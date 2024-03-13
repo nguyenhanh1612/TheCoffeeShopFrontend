@@ -1,4 +1,4 @@
-import { ADD_TO_CART, CHANGE_CART_QUANTITY, REMOVE_FROM_CART } from "../Types";
+
 export const ADD_TO_CART = "ADD_TO_CART";
 export const CHANGE_CART_QUANTITY = "CHANGE_CART_QUANTITY";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
@@ -14,14 +14,14 @@ export const CartReducer = (state, action) => {
     case REMOVE_FROM_CART: {
       return {
         ...state,
-        cart: state.cart.filter((c) => c.id !== action.payload.id),
+        cart: state.cart.filter((c) => c.id !== action.payload.drinkID),
       };
     }
     case CHANGE_CART_QUANTITY:
       return {
         ...state,
         cart: state.cart.filter((c) =>
-          c.id === action.payload.id ? (c.qty = action.payload.qty) : c.qty
+          c.drinkID === action.payload.drinkID ? (c.qty = action.payload.qty) : c.qty
         ),
       };
     default:

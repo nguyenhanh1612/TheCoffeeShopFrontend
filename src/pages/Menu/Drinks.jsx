@@ -11,10 +11,12 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css";
+import { CartState } from "../../contexts/cart";
+import { ADD_TO_CART } from "../../contexts/reducer/cartReducer";
 function Drinks() {
   const [searchTerm, setSearchTerm] = useState("");
   const [cardData, setCardData] = useState([]);
-
+  const { state: { cart }, dispatch } = CartState()
   useEffect(() => {
     if (searchTerm === "") {
       axios
@@ -43,8 +45,8 @@ function Drinks() {
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
-    console.log(searchTerm);
   };
+
   // const imageUrls = [
   //   "asset/O-long-kem-trung-nuong.png",
   //   "asset/meo bobtail.jpg",
@@ -112,7 +114,7 @@ function Drinks() {
                     onClick={() =>
                       dispatch({
                         type: ADD_TO_CART,
-                        payload: product,
+                        payload: card,
                       })
                     }
                   >

@@ -39,60 +39,63 @@ import UpdateDrink from "./pages/Manager/UpdateDrink";
 import CreateCatProduct from "./pages/Manager/CreateCatProduct";
 import ReadCatProduct from "./pages/Manager/ReadCatProduct";
 import UpdateCatProduct from "./pages/Manager/UpdateCatProduct";
+import CartProvider from "./contexts/cart";
 function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/orderstaff" element={<OrderStaff />} />
-          <Route path="/homestaff" element={<HomeStaff />} />
-          <Route path="/location" element={<Location />} />
-          <Route path="/bookingstaff" element={<BookingStaff />} />
-          <Route path="/booking" element={<Booking />} />
-          <Route path="/location2" element={<Chinhanh2 />} />
-          <Route path="/location3" element={<Chinhanh3 />} />
-          <Route path="/location4" element={<Chinhanh4 />} />
-          <Route path="/location5" element={<Chinhanh5 />} />
-          <Route path="/cat" element={<Cat />} />
-          <Route path="/allcat" element={<ListAllCat />} />
-          <Route path="/catshop1" element={<CatShop1 />} />
-          <Route path="/catshop2" element={<CatShop2 />} />
-          <Route path="/catshop3" element={<CatShop3 />} />
-          <Route path="/catshop4" element={<CatShop4 />} />
-          <Route path="/catshop5" element={<CatShop5 />} />
-          <Route path="/introduction" element={<IntroductionPage />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/allmenu" element={<ListAllMenu />} />
-          <Route path="/drinks" element={<Drinks />} />
-          <Route path="/catproducts" element={<CatProducts />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/manager" element={<Manager />} />
-          <Route path="/createcat" element={<CreateCat />} />
-          <Route path="/readcat" element={<ReadCat />} />
-          <Route path="/updatecat" element={<UpdateCat />} />
-          <Route path="/updatecat/:catID" element={<UpdateCat />} />
-          <Route path="/updatemanager" element={<UpdateManager />} />
-          <Route path="/updatemanager/:coffeeID" element={<UpdateManager />} />
-          <Route path="/readdrink" element={<ReadDrink />} />
-          <Route path="/createdrink" element={<CreateDrink />} />
-          <Route path="/updatedrink" element={<UpdateDrink />} />
-          <Route path="/createcatproduct" element={<CreateCatProduct />} />
-          <Route path="/readcatproduct" element={<ReadCatProduct />} />
-          <Route path="/updatecatproduct" element={<UpdateCatProduct />} />
-          <Route
-            path="/updatecatproduct/:catProductID"
-            element={<UpdateCatProduct />}
-          />
+    <CartProvider>
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/orderstaff" element={<OrderStaff />} />
+            <Route path="/homestaff" element={<HomeStaff />} />
+            <Route path="/location" element={<Location />} />
+            <Route path="/bookingstaff" element={<BookingStaff />} />
+            <Route path="/booking" element={<Booking />} />
+            <Route path="/location2" element={<Chinhanh2 />} />
+            <Route path="/location3" element={<Chinhanh3 />} />
+            <Route path="/location4" element={<Chinhanh4 />} />
+            <Route path="/location5" element={<Chinhanh5 />} />
+            <Route path="/cat" element={<Cat />} />
+            <Route path="/allcat" element={<ListAllCat />} />
+            <Route path="/catshop1" element={<CatShop1 />} />
+            <Route path="/catshop2" element={<CatShop2 />} />
+            <Route path="/catshop3" element={<CatShop3 />} />
+            <Route path="/catshop4" element={<CatShop4 />} />
+            <Route path="/catshop5" element={<CatShop5 />} />
+            <Route path="/introduction" element={<IntroductionPage />} />
+            <Route path="/menu" element={<Menu />} />
+            <Route path="/allmenu" element={<ListAllMenu />} />
+            <Route path="/drinks" element={<Drinks />} />
+            <Route path="/catproducts" element={<CatProducts />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/manager" element={<Manager />} />
+            <Route path="/createcat" element={<CreateCat />} />
+            <Route path="/readcat" element={<ReadCat />} />
+            <Route path="/updatecat" element={<UpdateCat />} />
+            <Route path="/updatecat/:catID" element={<UpdateCat />} />
+            <Route path="/updatemanager" element={<UpdateManager />} />
+            <Route path="/updatemanager/:coffeeID" element={<UpdateManager />} />
+            <Route path="/readdrink" element={<ReadDrink />} />
+            <Route path="/createdrink" element={<CreateDrink />} />
+            <Route path="/updatedrink" element={<UpdateDrink />} />
+            <Route path="/createcatproduct" element={<CreateCatProduct />} />
+            <Route path="/readcatproduct" element={<ReadCatProduct />} />
+            <Route path="/updatecatproduct" element={<UpdateCatProduct />} />
+            <Route
+              path="/updatecatproduct/:catProductID"
+              element={<UpdateCatProduct />}
+            />
 
-          <Route path="/updatedrink/:drinkID" element={<UpdateDrink />} />
-          <Route path="/homestaff" element={<HomeStaff />} />
-        </Routes>
-      </BrowserRouter>
-      <ToastContainer />
-    </AuthProvider>
+            <Route path="/updatedrink/:drinkID" element={<UpdateDrink />} />
+            <Route path="/homestaff" element={<HomeStaff />} />
+          </Routes>
+        </BrowserRouter>
+        <ToastContainer />
+      </AuthProvider>
+    </CartProvider>
   );
 }
 

@@ -10,13 +10,18 @@ import { Chip } from "@mui/material";
 import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { CartState } from "../../contexts/cart";
 
 
 
 function Header() {
+
   const navigate = useNavigate();
   const userData = useUserData();
   const { logout } = useAuth();
+
+  const { state: { cart }, dispatch } = CartState();
+
 
   const handleLogout = async () => {
     await logout();
@@ -134,7 +139,9 @@ function Header() {
           <FontAwesomeIcon icon={faSearch} />
           <input type="text" placeholder="Tìm kiếm..." />
         </div>
-        <FontAwesomeIcon icon={faShoppingCart} size="2x" color="white"/>
+        <FontAwesomeIcon icon={faShoppingCart} size="2x" color="white" />
+        <h2> {cart.length}</h2>
+
       </div>
     </div>
   );
