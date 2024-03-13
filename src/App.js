@@ -40,6 +40,7 @@ import CreateCatProduct from "./pages/Manager/CreateCatProduct";
 import ReadCatProduct from "./pages/Manager/ReadCatProduct";
 import UpdateCatProduct from "./pages/Manager/UpdateCatProduct";
 import CartProvider from "./contexts/cart";
+import Cart from "./pages/Cart";
 function App() {
   return (
     <CartProvider>
@@ -89,6 +90,7 @@ function App() {
               element={<UpdateCatProduct />}
             />
 
+            <Route path="/cart" element={<Cart />} />
             <Route path="/updatedrink/:drinkID" element={<UpdateDrink />} />
             <Route path="/homestaff" element={<HomeStaff />} />
           </Routes>

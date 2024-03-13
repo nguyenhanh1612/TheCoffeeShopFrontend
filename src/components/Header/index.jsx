@@ -6,7 +6,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useUserData } from "../../contexts/auth";
 import { useAuth } from "../../contexts/auth";
 import "./style.css";
-import { Chip } from "@mui/material";
+import { Badge, Chip } from "@mui/material";
 import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
@@ -139,8 +139,11 @@ function Header() {
           <FontAwesomeIcon icon={faSearch} />
           <input type="text" placeholder="Tìm kiếm..." />
         </div>
-        <FontAwesomeIcon icon={faShoppingCart} size="2x" color="white" />
-        <h2> {cart.length}</h2>
+        <Badge badgeContent={cart?.length || 0} color="primary" onClick={() => navigate("/cart")}>
+          <FontAwesomeIcon icon={faShoppingCart} size="2x" color="white" />
+        </Badge>
+        {/* 
+        <h2> {cart.length}</h2> */}
 
       </div>
     </div>
