@@ -43,6 +43,7 @@ import TableCoffeeShop5 from "./pages/Table/TableCoffeeShop5";
 import ConfirmStaff from "./pages/ConfirmStaff";
 import Cart from "./pages/Cart";
 import CartProvider from "./contexts/cart";
+// import Detail from "./pages/HomePage/DetailCat";
 
 function App() {
   return (
@@ -94,6 +95,7 @@ function App() {
             <Route path="/tablecoffeeshop5" element={<TableCoffeeShop5 />} />
             <Route path="/confirmstaff" element={<ConfirmStaff />} />
             <Route path="/cart" element={<Cart />} />
+            {/* <Route path="/detail/:catID" element={Detail} /> */}
           </Routes>
         </BrowserRouter>
         <ToastContainer />

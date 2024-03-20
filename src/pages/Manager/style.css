@@ -6,7 +6,7 @@
   flex-direction: column;
 }
 .background {
-  background-image: url("C:\Users\Admin\Desktop\Frontend\public\asset\nenanh.png");
+  /* background-image: url("C:\Users\Admin\Desktop\Frontend\public\asset\nenanh.png"); */
   background-size: cover;
   background-position: center;
   height: 100%;
