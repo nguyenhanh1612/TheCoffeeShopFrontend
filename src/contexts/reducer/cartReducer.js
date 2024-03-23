@@ -5,14 +5,15 @@ export const tang = "tang";
 export const giam = "giam";
 
 const transformedData = (item, quantity, amount) => {
-  const price = item.drinkName !== null ? item.priceDrink : item.priceCatProduct;
+  const price =
+    item.drinkName !== null ? item.priceDrink : item.priceCatProduct;
   return {
     menuID: item.menuID,
     name: item.drinkName !== null ? item.drinkName : item.catProductName,
     price: price,
     image: item.drinkName !== null ? item.imageDrink : item.imageCatProduct,
     quantity: quantity,
-    amount: amount ? amount : price
+    amount: amount ? amount : price,
   };
 };
 
@@ -21,7 +22,11 @@ const addToCart = (cart, product) => {
   const index = clone.findIndex((item) => item.menuID === product.menuID);
   if (index > -1) {
     const qty = +clone[index].quantity + 1;
-    const updatedItem = transformedData(product, +qty, +clone[index].price * qty);
+    const updatedItem = transformedData(
+      product,
+      +qty,
+      +clone[index].price * qty
+    );
     clone[index] = updatedItem;
   } else clone.push(transformedData(product, 1));
   return clone;
@@ -30,11 +35,11 @@ const change_qty = (cart, payload) => {
   const clone = [...cart];
   const index = cart.findIndex((item) => item.menuID === payload.menuID);
   if (tang === payload.event) {
-    const qty = clone[index].quantity + 1
+    const qty = clone[index].quantity + 1;
     clone[index].quantity = qty;
     clone[index].amount = qty * clone[index].price;
   } else {
-    const qty = clone[index].quantity - 1
+    const qty = clone[index].quantity - 1;
     if (clone[index].quantity === 1) clone.splice(index, 1);
     else {
       clone[index].quantity = qty;
@@ -54,7 +59,7 @@ export const CartReducer = (state, action) => {
     case REMOVE_FROM_CART: {
       return {
         ...state,
-        cart: []
+        cart: [],
       };
     }
     case CHANGE_CART_QUANTITY:
