@@ -137,7 +137,9 @@ export default function Admin() {
     }
   }, [loaded, navigate, userData]);
 
-  
+  const handleGOBack = () => {
+    navigate("/");
+  };
 
   return (
     <>
@@ -192,6 +194,14 @@ export default function Admin() {
                   <MdCreateNewFolder />
                 </ListItemIcon>
                 <ListItemText primary="Nhân viên" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton onClick={handleGOBack}>
+                <ListItemIcon>
+                  <MdCreateNewFolder />
+                </ListItemIcon>
+                <ListItemText primary="Đăng xuất" />
               </ListItemButton>
             </ListItem>
           </List>

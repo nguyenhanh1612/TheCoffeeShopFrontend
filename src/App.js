@@ -5,7 +5,7 @@ import HomeStaff from "./pages/HomeStaff";
 import BookingStaff from "./pages/BookingStaff";
 import HomePage from "./pages/HomePage";
 import Booking from "./pages/Booking";
-import Location from "./pages/Location";
+
 import Chinhanh1 from "./pages/Location/Chinhanh1";
 import Chinhanh2 from "./pages/Location/Chinhanh2";
 import Chinhanh3 from "./pages/Location/Chinhanh3";
@@ -43,7 +43,8 @@ import TableCoffeeShop5 from "./pages/Table/TableCoffeeShop5";
 import ConfirmStaff from "./pages/ConfirmStaff";
 import Cart from "./pages/Cart";
 import CartProvider from "./contexts/cart";
-
+import ReadStaff from "./pages/Staff/ReadStaff";
+import CreateStaff from "./pages/Staff/CreateStaff";
 function App() {
   return (
     <CartProvider>
@@ -94,6 +95,8 @@ function App() {
             <Route path="/tablecoffeeshop5" element={<TableCoffeeShop5 />} />
             <Route path="/confirmstaff" element={<ConfirmStaff />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/readstaff" element={<ReadStaff />} />
+            <Route path="/createstaff" element={<CreateStaff />} />
           </Routes>
         </BrowserRouter>
         <ToastContainer />
