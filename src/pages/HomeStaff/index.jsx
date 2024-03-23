@@ -124,22 +124,6 @@ export default function Staff() {
     });
   }, []);
 
-  // const columns = [
-  //   { field: "orderID", headerName: "ID", width: 200 },
-  //   { field: "createTime", headerName: "createTime", width: 200 },
-  //   { field: "totalPrice", headerName: "totalPrice", width: 200 },
-  //   { field: "totalItem", headerName: "totalItem", width: 200 },
-  //   { field: "totalDiscount", headerName: "totalDiscount", width: 200 },
-  //   { field: "status", headerName: "status", width: 200 },
-
-  //   {
-  //     field: "Anh",
-  //     headerName: "Full name",
-
-  //     width: 160,
-  //     valueGetter: (params) => `${params.row.staff.fullName}`,
-  //   },
-  // ];
   console.log(menudata);
   return (
     <>
@@ -183,7 +167,7 @@ export default function Staff() {
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? "initial" : "center",
-px: 2.5,
+                  px: 2.5,
                 }}
               >
                 <ListItemIcon
@@ -229,7 +213,6 @@ px: 2.5,
         <Box component="main" sx={{ marginTop: "7rem" }}>
           {/* {menudata == "readstaff" && <ReadStaff />}
           {menudata == "createstaff" && <CreateStaff />} */}
-          
         </Box>
         {/* <DataGrid
           rows={listOrder || []}
