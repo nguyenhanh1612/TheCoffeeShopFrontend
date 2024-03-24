@@ -45,6 +45,7 @@ import Cart from "./pages/Cart";
 import CartProvider from "./contexts/cart";
 import ReadStaff from "./pages/Staff/ReadStaff";
 import CreateStaff from "./pages/Staff/CreateStaff";
+import Staff from "./pages/Staff";
 function App() {
   return (
     <CartProvider>
@@ -77,6 +78,7 @@ function App() {
             <Route path="/catproducts" element={<CatProducts />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/manager" element={<Manager />} />
+            <Route path="/staff" element={<Staff />} />
             <Route path="/createcat" element={<CreateCat />} />
             <Route path="/readcat" element={<ReadCat />} />
             <Route path="/updatecat" element={<UpdateCat />} />

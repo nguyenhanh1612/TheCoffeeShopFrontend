@@ -98,21 +98,43 @@ function Header() {
               </Dropdown.Menu>
             </Dropdown>
           </li>
-          
-          <Link to="/booking" style={{ marginLeft: "10px", color: "#fff", marginRight: "10px" }}>
+
+          <Link
+            to="/booking"
+            style={{ marginLeft: "10px", color: "#fff", marginRight: "10px" }}
+          >
             ĐẶT BÀN
           </Link>
 
           {userData && userData.roleName === "Admin" ? (
-            <Link to="/admin" style={{ marginLeft: "10px", color: "#fff", marginRight: "10px" }}>
+            <Link
+              to="/admin"
+              style={{ marginLeft: "10px", color: "#fff", marginRight: "10px" }}
+            >
               ADMIN
             </Link>
+          ) : userData && userData.roleName === "Manager" ? (
+            <Link
+              to="/manager"
+              style={{ marginLeft: "10px", color: "#fff", marginRight: "10px" }}
+            >
+              MANAGER
+            </Link>
+          ) : userData && userData.roleName === "Staff" ? (
+            <Link
+              to="/staff"
+              style={{ marginLeft: "10px", color: "#fff", marginRight: "10px" }}
+            >
+              STAFF
+            </Link>
           ) : (
-            <Link to="#" style={{ marginLeft: "10px", color: "#fff", marginRight: "10px" }}>
+            <Link
+              to="#"
+              style={{ marginLeft: "10px", color: "#fff", marginRight: "10px" }}
+            >
               THẺ
             </Link>
           )}
-
         </ul>
       </div>
       <div className="header-right">

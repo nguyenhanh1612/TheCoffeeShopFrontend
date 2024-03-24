@@ -92,7 +92,7 @@ function Location1() {
                   }}
                 >
                   <Link
-                    to="/table"
+                    to="/tablecoffeeshop1"
                     style={{
                       textDecoration: "none",
                       color: "inherit",

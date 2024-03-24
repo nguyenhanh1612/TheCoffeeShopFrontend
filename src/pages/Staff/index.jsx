@@ -16,16 +16,14 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import CreateCoffeeShop from "../../components/CreateCoffeeShop";
-import ReadCoffeeShop from "../../components/ReadCoffeeShop";
-import ReadCat from "../Manager/ReadCat";
+
 import Collapse from "@mui/material/Collapse";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { MdDomain, MdCreateNewFolder } from "react-icons/md";
 import { useAuth, useUserData } from "../../contexts/auth";
 import { useNavigate } from "react-router-dom";
-
+import MenuStaff from "./Menu";
 import TableCoffeeShop1 from "../Table/TableCoffeeShop1";
 import TableCoffeeShop2 from "../Table/TableCoffeeShop2";
 import TableCoffeeShop3 from "../Table/TableCoffeeShop3";
@@ -59,7 +57,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   alignItems: "center",
   justifyContent: "flex-end",
   padding: theme.spacing(0, 1),
- 
+
   ...theme.mixins.toolbar,
 }));
 
@@ -98,11 +96,11 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function Admin() {
+export default function Staff() {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [menuData, setMenuData] = useState("Home");
-  // const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -112,27 +110,27 @@ export default function Admin() {
     setOpen(false);
   };
 
-  // const handleMenuOpen = (event) => {
-  //   setAnchorEl(event.currentTarget);
-  //   setMenuOpen(true);
-  // };
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+    setMenuOpen(true);
+  };
 
-  // const handleMenuClose = () => {
-  //   setAnchorEl(null);
-  //   setMenuOpen(false);
-  // };
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+    setMenuOpen(false);
+  };
 
-  // const handleMenuChange = (menu) => {
-  //   setMenuData(menu);
-  //   handleMenuClose();
-  // };
-  
+  const handleMenuChange = (menu) => {
+    setMenuData(menu);
+    handleMenuClose();
+  };
+
   const navigate = useNavigate();
   const userData = useUserData();
-  const { loaded } = useAuth()
+  const { loaded } = useAuth();
 
   useEffect(() => {
-    if (loaded && (!userData || userData.roleName !== "Admin")) {
+    if (loaded && (!userData || userData.roleName !== "Staff")) {
       navigate("/");
     }
   }, [loaded, navigate, userData]);
@@ -156,7 +154,7 @@ export default function Admin() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div">
-              Admin
+              Staff
             </Typography>
           </Toolbar>
         </AppBar>
@@ -172,16 +170,20 @@ export default function Admin() {
           </DrawerHeader>
           <Divider />
           <List>
-            <ListItem disablePadding onClick={() => setMenuData("ReadCoffeeShop")}>
+            <ListItem
+              disablePadding
+              onClick={(e) => {
+                e.stopPropagation();
+                handleMenuOpen(e);
+              }}
+            >
               <ListItemButton>
                 <ListItemIcon>
-                  <MdDomain />
+                  <MdCreateNewFolder />
                 </ListItemIcon>
                 <ListItemText primary="Trang chủ" />
               </ListItemButton>
             </ListItem>
-            
-            
             <ListItem disablePadding>
               <ListItemButton onClick={handleGOBack}>
                 <ListItemIcon>
@@ -193,29 +195,41 @@ export default function Admin() {
           </List>
           <Divider />
         </Drawer>
-        {/* <Menu
+        <Menu
           anchorEl={anchorEl}
           open={menuOpen}
           onClose={handleMenuClose}
           MenuListProps={{ onMouseLeave: handleMenuClose }}
         >
-          <MenuItem onClick={() => handleMenuChange("MenuStaff")}>Menu Staff</MenuItem>
-          <MenuItem onClick={() => handleMenuChange("TableCoffeeShop1")}>Chi nhánh  Bình Tân</MenuItem>
-          <MenuItem onClick={() => handleMenuChange("TableCoffeeShop2")}>Chi nhánh Quận 1</MenuItem>
-          <MenuItem onClick={() => handleMenuChange("TableCoffeeShop3")}>Chi nhánh Tân Bình</MenuItem>
-          <MenuItem onClick={() => handleMenuChange("TableCoffeeShop4")}>Chi nhánh Quận 8</MenuItem>
-          <MenuItem onClick={() => handleMenuChange("TableCoffeeShop5")}>Chi nhánh Quận 2</MenuItem>
-        </Menu> */}
+          <MenuItem onClick={() => handleMenuChange("MenuStaff")}>
+            Thực đơn
+          </MenuItem>
+          <MenuItem onClick={() => handleMenuChange("TableCoffeeShop1")}>
+            Chi nhánh Bình Tân
+          </MenuItem>
+          <MenuItem onClick={() => handleMenuChange("TableCoffeeShop2")}>
+            Chi nhánh Quận 1
+          </MenuItem>
+          <MenuItem onClick={() => handleMenuChange("TableCoffeeShop3")}>
+            Chi nhánh Tân Bình
+          </MenuItem>
+          <MenuItem onClick={() => handleMenuChange("TableCoffeeShop4")}>
+            Chi nhánh Quận 8
+          </MenuItem>
+          <MenuItem onClick={() => handleMenuChange("TableCoffeeShop5")}>
+            Chi nhánh Quận 2
+          </MenuItem>
+        </Menu>
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          {menuData === "ReadCoffeeShop" && <ReadCoffeeShop />}
+          {/* {menuData === "ReadCoffeeShop" && <ReadCoffeeShop />}
           {menuData === "CreateCoffeeShop" && <CreateCoffeeShop />}
-          {/* {menuData === "Readcat" && <ReadCat />}
+          {menuData === "Readcat" && <ReadCat />} */}
           {menuData === "MenuStaff" && <MenuStaff />}
           {menuData === "TableCoffeeShop1" && <TableCoffeeShop1 />}
           {menuData === "TableCoffeeShop2" && <TableCoffeeShop2 />}
           {menuData === "TableCoffeeShop3" && <TableCoffeeShop3 />}
           {menuData === "TableCoffeeShop4" && <TableCoffeeShop4 />}
-          {menuData === "TableCoffeeShop5" && <TableCoffeeShop5 />} */}
+          {menuData === "TableCoffeeShop5" && <TableCoffeeShop5 />}
         </Box>
       </Box>
     </>
