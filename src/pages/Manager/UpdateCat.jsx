@@ -48,7 +48,7 @@ function UpdateCat() {
     setCatData({ ...catData, status: !catData.status });
   };
   const handleGOBack = () => {
-    navigate("/admin");
+    navigate("/manager");
   };
   const handleSubmit = async (event) => {
     event.preventDefault();

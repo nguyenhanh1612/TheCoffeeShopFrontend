@@ -14,13 +14,17 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  IconButton,
 } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
 import axios from "axios";
 import { useAuth, useUserData } from "../../contexts/auth";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import "./style.css";
+import Box from "@mui/material/Box";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 const App = () => {
   const [tables, setTables] = useState([]);
   const [selectedTable, setSelectedTable] = useState({});
@@ -149,11 +153,19 @@ const App = () => {
       setSnackbarOpen(true);
     }
   };
+  const handleGOBack = () => {
+    navigate("/booking");
+  };
 
   return (
     <div className="table-booking">
-      
+      <Header/>
+      <>
+      <Box height={50} />
       <Container maxWidth="lg">
+      <IconButton onClick={handleGOBack} style={{ position: "absolute", top: 100, left: 20 }}> {/* Add IconButton for back navigation */}
+            <ArrowBackIcon />
+          </IconButton>
         <Typography variant="h3" component="h1" align="center" gutterBottom>
           Danh sách bàn
         </Typography>
@@ -278,6 +290,8 @@ const App = () => {
           </MuiAlert>
         </Snackbar>
       </Container>
+      </>
+      <Footer/>
     </div>
   );
 };

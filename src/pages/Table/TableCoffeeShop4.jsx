@@ -14,12 +14,16 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  IconButton,
 } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
 import axios from "axios";
 import { useAuth, useUserData } from "../../contexts/auth";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import Box from "@mui/material/Box";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import "./style.css";
 const App = () => {
   const [tables, setTables] = useState([]);
@@ -149,11 +153,19 @@ const App = () => {
       setSnackbarOpen(true);
     }
   };
+  const handleGOBack = () => {
+    navigate("/booking");
+  };
 
   return (
     <div className="table-booking">
-      
+      <Header />
+      <>
+      <Box height={50} />
       <Container maxWidth="lg">
+      <IconButton onClick={handleGOBack} style={{ position: "absolute", top: 100, left: 20 }}> {/* Add IconButton for back navigation */}
+            <ArrowBackIcon />
+          </IconButton>
         <Typography variant="h3" component="h1" align="center" gutterBottom>
           Danh sách bàn
         </Typography>
@@ -170,11 +182,26 @@ const App = () => {
                       : table.status === "Đã đặt"
                       ? "yellow"
                       : "red",
-                  cursor: table.status === "Đã đặt" ? "not-allowed" : "pointer",
-
-                  // opacity: userData.roleName !== 'Staff' && table.status !== 'Trống' ? 0.5 : 1,
-                }}
-                onClick={() => handleTableClick(table)}
+                      cursor:
+                      (userData.roleName === "Staff" || userData.roleName === "Manager") ||
+                      table.status === "Trống"
+                        ? "pointer"
+                        : "not-allowed",
+                    opacity:
+                      userData.roleName === "Staff" || userData.roleName === "Manager"
+                        ? 1
+                        : table.status === "Trống"
+                        ? 1
+                        : 0.5,
+                  }}
+                  onClick={() => {
+                    if (
+                      (userData.roleName === "Staff" || userData.roleName === "Manager") ||
+                      table.status === "Trống"
+                    ) {
+                      handleTableClick(table);
+                    }
+                  }}
               >
                 <Typography variant="body1" gutterBottom>
                   Trạng thái: {table.status}
@@ -262,6 +289,9 @@ const App = () => {
           </MuiAlert>
         </Snackbar>
       </Container>
+      <Footer/>
+      </>
+
     </div>
   );
 };

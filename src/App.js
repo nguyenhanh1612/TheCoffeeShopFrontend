@@ -5,7 +5,7 @@ import HomeStaff from "./pages/HomeStaff";
 import BookingStaff from "./pages/BookingStaff";
 import HomePage from "./pages/HomePage";
 import Booking from "./pages/Booking";
-import Location from "./pages/Location";
+
 import Chinhanh1 from "./pages/Location/Chinhanh1";
 import Chinhanh2 from "./pages/Location/Chinhanh2";
 import Chinhanh3 from "./pages/Location/Chinhanh3";
@@ -46,6 +46,9 @@ import CartProvider from "./contexts/cart";
 import Staff from "./pages/HomeStaff";
 // import Detail from "./pages/HomePage/DetailCat";
 
+import ReadStaff from "./pages/Staff/ReadStaff";
+import CreateStaff from "./pages/Staff/CreateStaff";
+import Staff from "./pages/Staff";
 function App() {
   return (
     <CartProvider>
@@ -78,6 +81,7 @@ function App() {
             <Route path="/catproducts" element={<CatProducts />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/manager" element={<Manager />} />
+            <Route path="/staff" element={<Staff />} />
             <Route path="/createcat" element={<CreateCat />} />
             <Route path="/readcat" element={<ReadCat />} />
             <Route path="/updatecat" element={<UpdateCat />} />
@@ -97,6 +101,8 @@ function App() {
             <Route path="/confirmstaff" element={<ConfirmStaff />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/staff" element={<Staff />} />
+            <Route path="/readstaff" element={<ReadStaff />} />
+            <Route path="/createstaff" element={<CreateStaff />} />
           </Routes>
         </BrowserRouter>
         <ToastContainer />

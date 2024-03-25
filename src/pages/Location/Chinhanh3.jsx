@@ -83,7 +83,7 @@ function Location3() {
                   }}
                 >
                   <Link
-                    to="/table"
+                    to="/tablecoffeeshop3"
                     style={{ textDecoration: "none", color: "inherit", fontSize: "25px" }}
                   >
                     Đặt bàn
