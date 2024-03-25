@@ -29,6 +29,7 @@ import TableCoffeeShop2 from "../Table/TableCoffeeShop2";
 import TableCoffeeShop3 from "../Table/TableCoffeeShop3";
 import TableCoffeeShop4 from "../Table/TableCoffeeShop4";
 import TableCoffeeShop5 from "../Table/TableCoffeeShop5";
+
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({

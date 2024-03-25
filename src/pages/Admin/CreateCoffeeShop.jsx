@@ -156,8 +156,10 @@ function CreateCoffee() {
 
   return (
     <>
-      <Box height={40} />
+     <div className="background">
       <div className="manager">
+      <h1>Thêm Mèo Mới</h1>
+          <p>Điền thông tin chi tiết để thêm một mèo mới vào hệ thống.</p>
         <Form onSubmit={handleSubmit}>
           <FormField>
             <label>Tên</label>
@@ -288,6 +290,7 @@ function CreateCoffee() {
           <Button type="submit">Thêm</Button>
           <Button onClick={handleGOBack}>Quay lại</Button>
         </Form>
+      </div>
       </div>
     </>
   );
