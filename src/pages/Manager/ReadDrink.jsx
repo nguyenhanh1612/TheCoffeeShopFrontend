@@ -13,19 +13,19 @@ import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import { Icon } from "semantic-ui-react";
 import { Button as SemanticButton } from "semantic-ui-react";
-function ReadCat() {
+function ReadDrink() {
   const navigate = useNavigate();
   const [deletedIds, setDeletedIds] = useState([]);
   const [apiData, setApiData] = useState([]);
-  const handleEdit = (catID) => {
-    navigate(`/updatecat/${catID}`);
+  const handleEdit = (drinkID) => {
+    navigate(`/updatedrink/${drinkID}`);
   };
   const handleAdd = () => {
-    navigate("/createcat");
+    navigate("/createdrink");
   };
   useEffect(() => {
     axios
-      .get(`https://thecoffeeshopstore.azurewebsites.net/api/Cats/`)
+      .get(`https://thecoffeeshopstore.azurewebsites.net/api/Drinks/`)
       .then((response) => {
         setApiData(response.data);
       })
@@ -36,7 +36,7 @@ function ReadCat() {
 
   useEffect(() => {
     const filteredData = apiData.filter(
-      (data) => !deletedIds.includes(data.catID)
+      (data) => !deletedIds.includes(data.drinkID)
     );
     setApiData(filteredData);
   }, [deletedIds]);
@@ -44,7 +44,7 @@ function ReadCat() {
   const onDelete = async (id) => {
     try {
       await axios.delete(
-        `https://thecoffeeshopstore.azurewebsites.net/api/Cats/${id}`
+        `https://thecoffeeshopstore.azurewebsites.net/api/Drinks/${id}`
       );
       setDeletedIds([...deletedIds, id]);
     } catch (error) {
@@ -57,16 +57,15 @@ function ReadCat() {
       <Box height={50} />
 
       <SemanticButton primary onClick={handleAdd}>
-        <Icon name="plus" /> Thêm mèo
+        <Icon name="plus" /> Thêm đồ uống
       </SemanticButton>
       <Table celled>
         <TableHeader>
           <TableRow>
             {/* <TableHeaderCell>ID</TableHeaderCell> */}
             <TableHeaderCell>Tên</TableHeaderCell>
-            <TableHeaderCell>Tuổi</TableHeaderCell>
-            <TableHeaderCell>Mô tả</TableHeaderCell>
-            <TableHeaderCell>Thể loại</TableHeaderCell>
+
+            <TableHeaderCell>Giá</TableHeaderCell>
             <TableHeaderCell>Ảnh</TableHeaderCell>
             <TableHeaderCell>Sửa</TableHeaderCell>
             <TableHeaderCell>Xóa</TableHeaderCell>
@@ -77,16 +76,15 @@ function ReadCat() {
         <TableBody>
           {apiData.map((data) => {
             return (
-              <TableRow key={data.catID}>
-                {/* <TableCell>{data.catID}</TableCell> */}
-                <TableCell>{data.catName}</TableCell>
-                <TableCell>{data.age}</TableCell>
-                <TableCell>{data.description}</TableCell>
-                <TableCell>{data.type}</TableCell>
+              <TableRow key={data.drinkID}>
+                {/* <TableCell>{data.drinkID}</TableCell> */}
+                <TableCell>{data.drinkName}</TableCell>
+                <TableCell>{data.unitPrice}</TableCell>
+
                 <TableCell style={{ padding: "10px" }}>
                   <img
                     src={data.image}
-                    alt="Cat"
+                    alt="drink"
                     style={{ maxWidth: "100px" }}
                   />
                 </TableCell>
@@ -94,7 +92,7 @@ function ReadCat() {
                 <TableCell>
                   <SemanticButton
                     color="blue"
-                    onClick={() => handleEdit(data.catID)}
+                    onClick={() => handleEdit(data.drinkID)}
                   >
                     Sửa
                   </SemanticButton>
@@ -103,7 +101,7 @@ function ReadCat() {
                 <TableCell>
                   <SemanticButton
                     color="red"
-                    onClick={() => onDelete(data.catID)}
+                    onClick={() => onDelete(data.drinkID)}
                   >
                     Xóa
                   </SemanticButton>
@@ -117,4 +115,4 @@ function ReadCat() {
   );
 }
 
-export default ReadCat;
+export default ReadDrink;
