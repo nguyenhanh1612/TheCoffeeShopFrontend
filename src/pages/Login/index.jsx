@@ -6,15 +6,15 @@ import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import { useAuth } from "../../contexts/auth";
 import { toast } from "react-toastify";
-import LoadingButton from '@mui/lab/LoadingButton';
+import LoadingButton from "@mui/lab/LoadingButton";
 
 function Login() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
-  const { login} = useAuth();
-  
+  const { login } = useAuth();
+
   const handleLogin = async () => {
     try {
       setLoading(true);
@@ -24,12 +24,14 @@ function Login() {
       });
       if (response.roleName === "Admin") {
         navigate("/admin");
-      } else{
+      } else if (response.roleName === "Staff") {
+        navigate("/staff");
+      } else {
         navigate("/");
       }
-     console.log(response)
+      console.log(response);
     } catch (error) {
-      console.log(error)
+      console.log(error);
       toast("Đăng nhập thất bại", {
         type: "error",
       });
@@ -37,8 +39,6 @@ function Login() {
       setLoading(false);
     }
   };
-
-  
 
   return (
     <div className="row g-0 vh-100 justify-content-center align-items-center login-container">

@@ -50,7 +50,9 @@ function Header() {
                 Chi nhánh Tân Bình
               </Dropdown.Item>
               <Dropdown.Item href="/location4">Chi nhánh Quận 8</Dropdown.Item>
-              <Dropdown.Item href="/location5">Chi nhánh Quận 2</Dropdown.Item>
+              <Dropdown.Item href="/location5">
+                Chi nhánh Quận Đa Kao- Quận 1
+              </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
           <li>
@@ -93,7 +95,7 @@ function Header() {
                   Các bé mèo ở chi nhánh Quận 8
                 </Dropdown.Item>
                 <Dropdown.Item href="/catshop5">
-                  Các bé mèo ở chi nhánh Quận 2
+                  Các bé mèo ở chi nhánh Đa Kao- Quận 1
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

@@ -43,6 +43,9 @@ import TableCoffeeShop5 from "./pages/Table/TableCoffeeShop5";
 import ConfirmStaff from "./pages/ConfirmStaff";
 import Cart from "./pages/Cart";
 import CartProvider from "./contexts/cart";
+import Staff from "./pages/HomeStaff";
+// import Detail from "./pages/HomePage/DetailCat";
+
 import ReadStaff from "./pages/Staff/ReadStaff";
 import CreateStaff from "./pages/Staff/CreateStaff";
 import Staff from "./pages/Staff";
@@ -97,6 +100,7 @@ function App() {
             <Route path="/tablecoffeeshop5" element={<TableCoffeeShop5 />} />
             <Route path="/confirmstaff" element={<ConfirmStaff />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/staff" element={<Staff />} />
             <Route path="/readstaff" element={<ReadStaff />} />
             <Route path="/createstaff" element={<CreateStaff />} />
           </Routes>
