@@ -45,7 +45,7 @@ function CreateCat() {
   };
 
   const handleGOBack = () => {
-    navigate("/admin");
+    navigate("/manager");
   };
 
   const coffeeShopIds = [
