@@ -163,7 +163,7 @@ const App = () => {
     <div className="table-booking">
       <Header />
       <>
-        <Box height={50} />
+        <Box height={250} />
         <Container maxWidth="lg">
         <IconButton onClick={handleGOBack} style={{ position: "absolute", top: 100, left: 20 }}> {/* Add IconButton for back navigation */}
             <ArrowBackIcon />
@@ -297,7 +297,7 @@ const App = () => {
         
       </>
       
-      <Footer />
+      <div style={{ marginTop: "150px"}}><Footer/></div>
     </div>
   );
 };

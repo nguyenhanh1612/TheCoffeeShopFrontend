@@ -7,22 +7,10 @@ import Typography from "@mui/material/Typography";
 import Slider from "react-slick";
 import StarIcon from "@mui/icons-material/Star";
 
-const labels = {
-  0.5: "Useless",
-  1: "Useless+",
-  1.5: "Poor",
-  2: "Poor+",
-  2.5: "Ok",
-  3: "Ok+",
-  3.5: "Good",
-  4: "Good+",
-  4.5: "Excellent",
-  5: "Excellent+",
-};
-
 function CustomerReviews() {
   function Arrow(props) {
     const { className, style, onClick } = props;
+    
     return (
       <div
         className={className}
@@ -31,6 +19,39 @@ function CustomerReviews() {
       />
     );
   }
+
+  const comments = [
+    {
+      name: "Huỳnh Vy",
+      text:
+        "Mèo vừa xinh xắn vừa dễ thương. Sau ngày làm việc mệt mỏi thì chỉ muốn gặp các 'Hoàng Thượng mãi thoai <3'!",
+     
+    },
+    
+    {
+      name: "MyBabyBoo",
+      text:
+        "Mèo này có đôi mắt to tròn, lông mịn, chắc chắn sẽ làm say lòng bất kỳ ai!",
+    
+    },
+    {
+      name: "Ngọc Tâm",
+      text: "Mèo quá dễ thương, mỗi lần nhìn vào làm lòng người như tan chảy.",
+     
+    },
+    {
+      name: "Sâu",
+      text: "Phải ghé thường xuyên thui <3",
+     
+    },
+  ];
+
+  
+  const getRandomPastDate = () => {
+    const today = new Date();
+    const pastDate = new Date(today.getTime() - Math.floor(Math.random() * 30) * 24 * 60 * 60 * 1000);
+    return pastDate.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+  };
 
   const settings = {
     dots: true,
@@ -68,16 +89,14 @@ function CustomerReviews() {
   return (
     <div className="sticky-slider" style={{ width: "100%" }}>
       <Slider {...settings}>
-        {[...Array(10)].map((_, index) => (
+      {comments.map((comment, index) => (
           <div className="comment" key={index}>
             <Card sx={{ maxWidth: 1000 }} style={{ margin: 10 }}>
               <CardHeader
                 avatar={
                   <Avatar
-                    alt={`Customer ${index + 1}`}
-                    src={`https://source.unsplash.com/50x50/?person&sig=${
-                      index + 1
-                    }`}
+                    alt={comment.name}
+                    src={`https://source.unsplash.com/50x50/?person&sig=${index + 1}`}
                   />
                 }
                 action={
@@ -85,14 +104,13 @@ function CustomerReviews() {
                     <StarIcon />
                   </IconButton>
                 }
-                title={`Customer ${index + 1}`}
-                subheader={`September ${
-                  Math.floor(Math.random() * 30) + 1
-                }, 2024`}
+                title={comment.name}
+                subheader={getRandomPastDate()}
               />
               <Typography variant="h5" color="text.secondary">
-                {`This is a great cafe with lovely cats. I had a wonderful time here. Highly recommended!`}
+                {comment.text}
               </Typography>
+              
             </Card>
           </div>
         ))}

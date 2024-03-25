@@ -58,7 +58,7 @@ function ListAllCat() {
     <div className="cat-page">
       <Header />
       <div className="cat-text-1">
-        <h1>Tất cả các bé mèo của Donna Cat Coffee</h1>
+        <h1 style={{ marginTop: "50px" }}>Tất cả các bé mèo của Donna Cat Coffee</h1>
       </div>
       <div className="input-cat">
         <FontAwesomeIcon icon={faSearch} />

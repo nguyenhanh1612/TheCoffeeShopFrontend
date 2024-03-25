@@ -158,8 +158,8 @@ function CreateCoffee() {
     <>
      <div className="background">
       <div className="manager">
-      <h1>Thêm Mèo Mới</h1>
-          <p>Điền thông tin chi tiết để thêm một mèo mới vào hệ thống.</p>
+      <h1>Thêm Chi Nhánh Mới</h1>
+          <p>Điền thông tin chi tiết để thêm một chi nhánh mới vào hệ thống.</p>
         <Form onSubmit={handleSubmit}>
           <FormField>
             <label>Tên</label>
@@ -176,7 +176,7 @@ function CreateCoffee() {
               <Select
                 value={openHour}
                 onChange={handleOpenHourChange}
-                style={{ marginRight: "5px" }}
+                style={{ marginRight: "5px", backgroundColor: '#fff' }}
               >
                 {Array.from({ length: 12 }).map((_, index) => (
                   <MenuItem key={index} value={index + 1}>
@@ -187,14 +187,14 @@ function CreateCoffee() {
               <Select
                 value={openMinute}
                 onChange={handleOpenMinuteChange}
-                style={{ marginRight: "5px" }}
+                style={{ marginRight: "5px", backgroundColor: '#fff' }}
               >
                 <MenuItem value="00">00</MenuItem>
                 <MenuItem value="15">15</MenuItem>
                 <MenuItem value="30">30</MenuItem>
                 <MenuItem value="45">45</MenuItem>
               </Select>
-              <Select value={openPeriod} onChange={handleOpenPeriodChange}>
+              <Select value={openPeriod} onChange={handleOpenPeriodChange} style={{ backgroundColor: '#fff' }}>
                 <MenuItem value="AM">AM</MenuItem>
                 <MenuItem value="PM">PM</MenuItem>
               </Select>
@@ -207,7 +207,7 @@ function CreateCoffee() {
               <Select
                 value={closeHour}
                 onChange={handleCloseHourChange}
-                style={{ marginRight: "5px" }}
+                style={{ marginRight: "5px",  backgroundColor: '#fff'}}
               >
                 {Array.from({ length: 12 }).map((_, index) => (
                   <MenuItem key={index} value={index + 1}>
@@ -218,14 +218,14 @@ function CreateCoffee() {
               <Select
                 value={closeMinute}
                 onChange={handleCloseMinuteChange}
-                style={{ marginRight: "5px" }}
+                style={{ marginRight: "5px",  backgroundColor: '#fff' }}
               >
                 <MenuItem value="00">00</MenuItem>
                 <MenuItem value="15">15</MenuItem>
                 <MenuItem value="30">30</MenuItem>
                 <MenuItem value="45">45</MenuItem>
               </Select>
-              <Select value={closePeriod} onChange={handleClosePeriodChange}>
+              <Select value={closePeriod} onChange={handleClosePeriodChange} style={{ backgroundColor: '#fff' }}>
                 <MenuItem value="AM">AM</MenuItem>
                 <MenuItem value="PM">PM</MenuItem>
               </Select>
@@ -287,7 +287,7 @@ function CreateCoffee() {
             <Checkbox label="Tôi đồng ý với các Điều khoản và Điều kiện" />
           </FormField>
           {isCreated && <p style={{ color: "green" }}>Thêm thành công!</p>}
-          <Button type="submit">Thêm</Button>
+          <Button type="submit" style={{ backgroundColor: 'green', color: '#fff', marginRight: '20px' }}>Thêm</Button>
           <Button onClick={handleGOBack}>Quay lại</Button>
         </Form>
       </div>
