@@ -1,7 +1,7 @@
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import OrderStaff from "./pages/OrderStaff";
-import HomeStaff from "./pages/HomeStaff";
+
 import BookingStaff from "./pages/BookingStaff";
 import HomePage from "./pages/HomePage";
 import Booking from "./pages/Booking";
@@ -43,12 +43,20 @@ import TableCoffeeShop5 from "./pages/Table/TableCoffeeShop5";
 import ConfirmStaff from "./pages/ConfirmStaff";
 import Cart from "./pages/Cart";
 import CartProvider from "./contexts/cart";
-import Staff from "./pages/HomeStaff";
+// import Staff from "./pages/HomeStaff";
 // import Detail from "./pages/HomePage/DetailCat";
 
-import ReadStaff from "./pages/Staff/ReadStaff";
-import CreateStaff from "./pages/Staff/CreateStaff";
 import Staff from "./pages/Staff";
+import CreateCatProduct from "./pages/Manager/CreateCatProduct";
+import ReadCatProduct from "./pages/Manager/ReadCatProduct";
+import UpdateCatProduct from "./pages/Manager/UpdateCatProduct";
+import CreateDrink from "./pages/Manager/CreateDrink";
+import ReadDrink from "./pages/Manager/ReadDrink";
+import UpdateDrink from "./pages/Manager/UpdateDrink";
+import CreateStaff from "./pages/Manager/CreateStaff";
+import ReadStaff from "./pages/Manager/ReadStaff";
+import UpdateStaff from "./pages/Manager/UpdateStaff";
+
 function App() {
   return (
     <CartProvider>
@@ -59,7 +67,6 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/orderstaff" element={<OrderStaff />} />
-            <Route path="/homestaff" element={<HomeStaff />} />
             <Route path="/bookingstaff" element={<BookingStaff />} />
             <Route path="/booking" element={<Booking />} />
             <Route path="/location" element={<Chinhanh1 />} />
@@ -81,11 +88,30 @@ function App() {
             <Route path="/catproducts" element={<CatProducts />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/manager" element={<Manager />} />
-            <Route path="/staff" element={<Staff />} />
+
             <Route path="/createcat" element={<CreateCat />} />
             <Route path="/readcat" element={<ReadCat />} />
             <Route path="/updatecat" element={<UpdateCat />} />
             <Route path="/updatecat/:catID" element={<UpdateCat />} />
+
+            <Route path="/createcatproduct" element={<CreateCatProduct />} />
+            <Route path="/readcatproduct" element={<ReadCatProduct />} />
+            <Route path="/updatecatproduct" element={<UpdateCatProduct />} />
+            <Route
+              path="/updatecatproduct/:catProductID"
+              element={<UpdateCatProduct />}
+            />
+
+            <Route path="/createdrink" element={<CreateDrink />} />
+            <Route path="/readdrink" element={<ReadDrink />} />
+            <Route path="/updatedrink" element={<UpdateDrink />} />
+            <Route path="/updatedrink/:drinkID" element={<UpdateDrink />} />
+
+            <Route path="/createstaff" element={<CreateStaff />} />
+            <Route path="/readstaff" element={<ReadStaff />} />
+            <Route path="/updatestaff" element={<UpdateStaff />} />
+            <Route path="/updatestaff/:staffID" element={<UpdateStaff />} />
+
             <Route path="/createcoffeeshop" element={<CreateCoffeeShop />} />
             <Route path="/updatemanager" element={<UpdateManager />} />
             <Route
@@ -101,8 +127,6 @@ function App() {
             <Route path="/confirmstaff" element={<ConfirmStaff />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/staff" element={<Staff />} />
-            <Route path="/readstaff" element={<ReadStaff />} />
-            <Route path="/createstaff" element={<CreateStaff />} />
           </Routes>
         </BrowserRouter>
         <ToastContainer />
