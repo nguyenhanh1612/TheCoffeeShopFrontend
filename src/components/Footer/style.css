@@ -1,5 +1,5 @@
 .footer {
-  background-color: #004B00; /* Chỉnh màu nền của footer */
+  background-color: #004B00; 
   color: #fff;
   padding: 50px 0;
   width: 100%;
@@ -19,7 +19,7 @@
 .footer-col {
   flex: 1;
   min-width: 200px;
-  margin-right: 10px; /* Thêm lề phải 10px */
+  margin-right: 10px;
 }
 
 .footer-col h4 {
@@ -28,10 +28,10 @@
 
 .footer-col p {
   margin-bottom: 10px;
-  text-align: left; /* Căn văn bản sang trái */
+  text-align: left;
 }
 .footer a {
-  color: white; /* Đặt màu cho các thẻ link trong footer */
+  color: white; 
 }
 
 .social-links a {

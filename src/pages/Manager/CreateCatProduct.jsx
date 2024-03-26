@@ -41,6 +41,10 @@ function CreateCatProduct() {
     setStatus(!status);
   };
 
+  const handleGOBack = () => {
+    navigate("/manager");
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -78,7 +82,11 @@ function CreateCatProduct() {
   };
 
   return (
+    <>
+    <div className="background">
     <div className="manager">
+    <h1>Thêm Sản Phẩm Mới</h1>
+          <p>Điền thông tin chi tiết để thêm một sản phẩm mới vào hệ thống.</p>
       <Form onSubmit={handleSubmit}>
         <FormField>
           <label>Tên</label>
@@ -133,9 +141,12 @@ function CreateCatProduct() {
         {isCreated && (
           <p style={{ color: "green" }}>Thêm sản phẩm thành công!</p>
         )}
-        <Button type="submit">Thêm</Button>
+        <Button type="submit" style={{ backgroundColor: 'green', color: '#fff', marginRight: '20px' }}>Thêm</Button>
+        <Button onClick={handleGOBack}>Quay lại</Button>
       </Form>
     </div>
+    </div>
+    </>
   );
 }
 

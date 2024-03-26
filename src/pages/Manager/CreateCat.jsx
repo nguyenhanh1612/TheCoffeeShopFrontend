@@ -87,7 +87,7 @@ function CreateCat() {
       setIsCreated(true);
       setTimeout(() => {
         setIsCreated(false);
-        navigate("/readcat");
+        navigate("/manager");
       }, 1000);
     } catch (error) {
       console.error("Error sending data:", error);

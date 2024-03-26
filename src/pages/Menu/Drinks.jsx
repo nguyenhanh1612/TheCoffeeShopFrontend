@@ -51,7 +51,7 @@ function Drinks() {
       <Header />
 
       <div className="menu-text-1">
-        <h1>Menu</h1>
+        <h1>Nước uống</h1>
       </div>
       <div className="input-cat">
         <FontAwesomeIcon icon={faSearch} />

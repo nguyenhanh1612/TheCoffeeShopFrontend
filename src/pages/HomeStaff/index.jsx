@@ -97,7 +97,7 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function Staff() {
+export default function HomeStaff() {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [menuData, setMenuData] = useState("Home");

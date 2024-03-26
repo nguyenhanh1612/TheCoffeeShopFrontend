@@ -43,6 +43,7 @@ import TableCoffeeShop5 from "./pages/Table/TableCoffeeShop5";
 import ConfirmStaff from "./pages/ConfirmStaff";
 import Cart from "./pages/Cart";
 import CartProvider from "./contexts/cart";
+// import HomeStaff from "./pages/HomeStaff";
 // import Staff from "./pages/HomeStaff";
 // import Detail from "./pages/HomePage/DetailCat";
 
@@ -67,6 +68,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/orderstaff" element={<OrderStaff />} />
+            {/* <Route path="/homestaff" element={<HomeStaff />} /> */}
             <Route path="/bookingstaff" element={<BookingStaff />} />
             <Route path="/booking" element={<Booking />} />
             <Route path="/location" element={<Chinhanh1 />} />

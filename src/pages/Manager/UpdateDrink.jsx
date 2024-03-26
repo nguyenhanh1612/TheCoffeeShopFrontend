@@ -90,7 +90,11 @@ function UpdateDrink() {
   };
 
   return (
+    <>
+    <div className="background">
     <div className="manager">
+    <h1>Chỉnh Sửa Đồ Uống</h1>
+          <p>Điền thông tin chi tiết để chỉnh sửa đồ uống trên hệ thống.</p>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
@@ -145,12 +149,14 @@ function UpdateDrink() {
                   : "Sửa đổi đã được lưu thành công!"}
               </p>
             )}
-            <Button type="submit">Cập nhật</Button>
+            <Button type="submit" style={{ backgroundColor: 'green', color: '#fff', marginRight: '20px' }}>Cập nhật</Button>
             <Button onClick={handleGOBack}>Quay lại</Button>
           </Form>
         </>
       )}
     </div>
+    </div>
+    </>
   );
 }
 
