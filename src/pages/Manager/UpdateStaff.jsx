@@ -57,7 +57,7 @@ function UpdateStaff() {
         const formData = new FormData();
         formData.append("fullName", staffData.fullName);
 
-        formData.append("phoneNumber", staffData.phoneNumer);
+        formData.append("phoneNumber", staffData.phoneNumber);
         formData.append("address", staffData.address);
 
         formData.append("dob", staffData.dob);
@@ -114,7 +114,7 @@ function UpdateStaff() {
               <textarea
                 placeholder="Số điện thoại"
                 name="phoneNumber"
-                value={staffData.phoneNumer}
+                value={staffData.phoneNumber}
                 onChange={handleInputChange}
               />
             </FormField>

@@ -137,7 +137,7 @@ function UpdateCatProduct() {
                 accept="image/*"
                 type="file"
                 onChange={(event) =>
-                  setcatProductData({
+                  setCatProductData({
                     ...catProductData,
                     image: event.target.files[0],
                   })
