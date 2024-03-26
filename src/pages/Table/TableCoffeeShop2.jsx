@@ -45,7 +45,7 @@ const App = () => {
   const fetchTables = async () => {
     try {
       const response = await axios.get(
-        `https://65e74f0253d564627a8e7c9f.mockapi.io/table`
+        `https://thecoffeeshopstore.azurewebsites.net/api/Tables`
       );
       const filteredTables = response.data.filter(
         (table) => table.coffeeID === coffeeShopId
@@ -57,15 +57,23 @@ const App = () => {
   };
 
   const handleTableClick = (table) => {
-    if (userData.roleName === "Staff" || userData.roleName === "Manager") {
-      
+    if (userData && userData.roleName === "Staff") {
       setSelectedTable(table);
       setChangeStatusDialogOpen(true);
+    } else if (userData && (userData.roleName === "Admin" || userData.roleName === "Manager")) {
+      // Không cho phép cập nhật bàn cho Admin và Manager
+      setSnackbarSeverity("error");
+      setSnackbarMessage("Bạn không có quyền cập nhật trạng thái của bàn.");
+      setSnackbarOpen(true);
     } else {
-     
       if (table.status === "Trống") {
         setSelectedTable(table);
         setConfirmDialogOpen(true);
+      } else {
+        // Chỉ cho phép đặt bàn khi trạng thái là "Trống" cho các vai trò khác
+        setSnackbarSeverity("error");
+        setSnackbarMessage("Bạn chỉ có thể đặt bàn khi trạng thái là 'Trống'.");
+        setSnackbarOpen(true);
       }
     }
   };
@@ -78,13 +86,7 @@ const App = () => {
         confirmBooking(selectedTable.tableID);
         console.log(selectedTable.tableID);
         await fetchTables();
-        // setTables(prevTables =>
-        //   prevTables.map(table =>
-        //     table.tableID === selectedTable.tableID
-        //       ? { ...table, status: 'Yêu cầu đặt' }
-        //       : table
-        //   )
-        // );
+        
         setSnackbarSeverity("success");
         setSnackbarMessage("Đặt hàng thành công!");
         setSnackbarOpen(true);
@@ -107,7 +109,7 @@ const App = () => {
     });
     console.log(updateTables);
     await axios
-      .put(`https://65e74f0253d564627a8e7c9f.mockapi.io/table/${tableID}`, {
+      .put(`https://thecoffeeshopstore.azurewebsites.net/api/Tables/${tableID}`, {
         status: "Yêu cầu đặt",
       })
       .then((response) => console.log(response.status));
@@ -128,7 +130,7 @@ const App = () => {
   const handleUpdateStatus = async () => {
     try {
       await axios.put(
-        `https://65e74f0253d564627a8e7c9f.mockapi.io/table/${selectedTable.tableID}`,
+        `https://thecoffeeshopstore.azurewebsites.net/api/Tables/${selectedTable.tableID}`,
         {
           status: selectedStatus,
         }
@@ -171,51 +173,55 @@ const App = () => {
           Danh sách bàn
         </Typography>
         <Grid container spacing={3}>
-          {tables.map((table) => (
-            <Grid item xs={12} sm={6} md={4} key={table.tableID}>
-              <Paper
-                 elevation={3}
-                 style={{
-                   padding: 20,
-                   backgroundColor:
-                     table.status === "Trống"
-                       ? "green"
-                       : table.status === "Đã đặt"
-                       ? "yellow"
-                       : "red",
-                   cursor:
-                     (userData.roleName === "Staff" || userData.roleName === "Manager") ||
-                     table.status === "Trống"
-                       ? "pointer"
-                       : "not-allowed",
-                   opacity:
-                     userData.roleName === "Staff" || userData.roleName === "Manager"
-                       ? 1
-                       : table.status === "Trống"
-                       ? 1
-                       : 0.5,
-                 }}
-                 onClick={() => {
-                   if (
-                     (userData.roleName === "Staff" || userData.roleName === "Manager") ||
-                     table.status === "Trống"
-                   ) {
-                     handleTableClick(table);
-                   }
-                 }}
-               
-              >
-                <Typography variant="body1" gutterBottom>
-                  Trạng thái: {table.status}
-                </Typography>
-                <Typography variant="body1" gutterBottom>
-                  Thể loại: {table.type}
-                </Typography>
-              </Paper>
-            </Grid>
-          ))}
-        </Grid>
-
+            {tables.map((table) => (
+              <Grid item xs={12} sm={6} md={4} key={table.tableID}>
+                <Paper
+                  elevation={3}
+                  style={{
+                    padding: 20,
+                    backgroundColor:
+                      table.status === "Trống"
+                        ? "green"
+                        : table.status === "Đã đặt"
+                        ? "yellow"
+                        : "red",
+                    cursor:
+                      userData.roleName === "Staff" ||
+                      userData.roleName === "Manager" ||
+                      userData.roleName === "Admin" ||
+                      table.status === "Trống"
+                        ? "pointer"
+                        : "not-allowed",
+                    opacity:
+                      userData.roleName === "Staff" ||
+                      userData.roleName === "Manager" || userData.roleName === "Admin" 
+                        ? 1
+                        : table.status === "Trống"
+                        ? 1
+                        : 0.5,
+                  }}
+                  onClick={() => {
+                    if (
+                      userData.roleName === "Staff" ||
+                      userData.roleName === "Admin" ||
+                      userData.roleName === "Manager" || 
+                      
+                      table.status === "Trống"
+                    ) {
+                      handleTableClick(table);
+                    }
+                  }}
+                >
+                  <Typography variant="body1" gutterBottom>
+                    Trạng thái: {table.status}
+                  </Typography>
+                  <Typography variant="body1" gutterBottom>
+                    Thể loại: {table.type}
+                  </Typography>
+                </Paper>
+              </Grid>
+            ))}
+          </Grid>
         <Dialog
           open={confirmDialogOpen}
           onClose={() => setConfirmDialogOpen(false)}
