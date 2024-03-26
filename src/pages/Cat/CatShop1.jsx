@@ -35,50 +35,50 @@ function CatShop1() {
       <Header />
 
       <div className="cat-text-1">
-        <h1 style={{ marginTop: "50px" }}>Các Boss tại chi nhánh 1 của Donna</h1>
+        <h1 style={{ marginTop: "50px" }}>
+          Các Boss tại chi nhánh Bình Tân của Donna
+        </h1>
       </div>
       <div className="cards">
-        {loaded ? (
-          cardData.map((card, index) => (
-            <div className="card-1" key={index}>
-              <Card sx={{ maxWidth: 500, height: 550 }}>
-                <CardActionArea>
-                  <CardMedia
-                    component="img"
-                    height="300px"
-                    image={card.image}
-                    alt="mèo"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                      {card.catName}
-                    </Typography>
-                    <Typography gutterBottom variant="h8" component="div">
-                      {card.age} tuổi
-                    </Typography>
-                    <Typography gutterBottom variant="h8" component="div">
-                      {card.type}
-                    </Typography>
-                    <Typography gutterBottom variant="h8" component="div">
-                      Chi nhánh Bình Tân
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      {card.description}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </div>
-          ))
-        ) : (
-          [...Array(12)].map((_, index) => (
-            <div className="card-1" key={index}>
-              <Card sx={{ maxWidth: 500, height: 550 }}>
-                <Skeleton key={index} width={500} height={500} />;
-              </Card>
-            </div>
-          ))
-        )}
+        {loaded
+          ? cardData.map((card, index) => (
+              <div className="card-1" key={index}>
+                <Card sx={{ maxWidth: 500, height: 550 }}>
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      height="300px"
+                      image={card.image}
+                      alt="mèo"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="div">
+                        {card.catName}
+                      </Typography>
+                      <Typography gutterBottom variant="h8" component="div">
+                        {card.age} tuổi
+                      </Typography>
+                      <Typography gutterBottom variant="h8" component="div">
+                        {card.type}
+                      </Typography>
+                      <Typography gutterBottom variant="h8" component="div">
+                        Chi nhánh Bình Tân
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {card.description}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </div>
+            ))
+          : [...Array(12)].map((_, index) => (
+              <div className="card-1" key={index}>
+                <Card sx={{ maxWidth: 500, height: 550 }}>
+                  <Skeleton key={index} width={500} height={500} />;
+                </Card>
+              </div>
+            ))}
       </div>
 
       <Footer />
