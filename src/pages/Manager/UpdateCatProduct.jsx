@@ -63,7 +63,7 @@ function UpdateCatProduct() {
 
         formData.append("price", catProductData.price);
         formData.append("status", catProductData.status);
-        formData.append("menus", catProductData.menus);
+        
         if (catProductData.image) {
           formData.append("image", catProductData.image);
         }
@@ -97,7 +97,11 @@ function UpdateCatProduct() {
   };
 
   return (
+    <>
+    <div className="background">
     <div className="manager">
+    <h1>Chỉnh Sửa Sản Phẩm Mèo</h1>
+          <p>Điền thông tin chi tiết để chỉnh sửa sản phẩm mèo trên hệ thống.</p>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
@@ -144,15 +148,7 @@ function UpdateCatProduct() {
                 }
               />
             </FormField>
-            <FormField>
-              <label>Thực đơn</label>
-              <input
-                placeholder="Thực đơn"
-                name="menus"
-                value={catProductData.menus}
-                onChange={handleInputChange}
-              />
-            </FormField>
+          
             <FormField>
               <Checkbox
                 checked={catProductData.status}
@@ -176,12 +172,14 @@ function UpdateCatProduct() {
                   : "Sửa đổi đã được lưu thành công!"}
               </p>
             )}
-            <Button type="submit">Cập nhật</Button>
+            <Button type="submit" style={{ backgroundColor: 'green', color: '#fff', marginRight: '20px' }}>Cập nhật</Button>
             <Button onClick={handleGOBack}>Quay lại</Button>
           </Form>
         </>
       )}
     </div>
+    </div>
+    </>
   );
 }
 

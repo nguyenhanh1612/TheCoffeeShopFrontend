@@ -80,13 +80,7 @@ const App = () => {
         confirmBooking(selectedTable.tableID);
         console.log(selectedTable.tableID);
         await fetchTables();
-        // setTables(prevTables =>
-        //   prevTables.map(table =>
-        //     table.tableID === selectedTable.tableID
-        //       ? { ...table, status: 'Yêu cầu đặt' }
-        //       : table
-        //   )
-        // );
+        
         setSnackbarSeverity("success");
         setSnackbarMessage("Đặt hàng thành công!");
         setSnackbarOpen(true);
@@ -165,7 +159,7 @@ const App = () => {
       <>
         <Box height={250} />
         <Container maxWidth="lg">
-        <IconButton onClick={handleGOBack} style={{ position: "absolute", top: 100, left: 20 }}> {/* Add IconButton for back navigation */}
+        <IconButton onClick={handleGOBack} style={{ position: "absolute", top: 100, left: 20 }}> 
             <ArrowBackIcon />
           </IconButton>
           <Typography variant="h3" component="h1" align="center" gutterBottom>

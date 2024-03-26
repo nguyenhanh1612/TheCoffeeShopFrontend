@@ -97,7 +97,7 @@ function UpdateCat() {
     <>
       <div className="background">
         <div className="manager">
-          <h1>Chỉnh sửa mèo</h1>
+          <h1>Chỉnh Sửa Mèo</h1>
           <p>Điền thông tin chi tiết để chỉnh sửa mèo trên hệ thống.</p>
           {isLoading ? (
             <p>Loading...</p>
