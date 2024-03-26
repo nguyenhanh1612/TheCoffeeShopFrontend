@@ -18,7 +18,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-
+import { FaCat } from "react-icons/fa";
 import ReadCat from "../Manager/ReadCat";
 import { MdDomain, MdCreateNewFolder } from "react-icons/md";
 import { useAuth, useUserData } from "../../contexts/auth";
@@ -26,7 +26,10 @@ import { useNavigate } from "react-router-dom";
 import ReadCatProduct from "./ReadCatProduct";
 import ReadDrink from "./ReadDrink";
 import ReadStaff from "./ReadStaff";
-
+import { BiSolidDrink } from "react-icons/bi";
+import { BiSolidBaguette } from "react-icons/bi";
+import { RxAvatar } from "react-icons/rx";
+import { RiArrowGoBackFill } from "react-icons/ri";
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -156,7 +159,7 @@ export default function Manager() {
             <ListItem disablePadding onClick={() => setMenuData("ReadCat")}>
               <ListItemButton>
                 <ListItemIcon>
-                  <MdDomain />
+                <FaCat />
                 </ListItemIcon>
                 <ListItemText primary="Mèo" />
               </ListItemButton>
@@ -165,7 +168,7 @@ export default function Manager() {
             <ListItem disablePadding onClick={() => setMenuData("ReadDrink")}>
               <ListItemButton>
                 <ListItemIcon>
-                  <MdDomain />
+                <BiSolidDrink />
                 </ListItemIcon>
                 <ListItemText primary="Đồ uống" />
               </ListItemButton>
@@ -177,7 +180,7 @@ export default function Manager() {
             >
               <ListItemButton>
                 <ListItemIcon>
-                  <MdDomain />
+                <BiSolidBaguette />
                 </ListItemIcon>
                 <ListItemText primary="Sản phẩm cho mèo" />
               </ListItemButton>
@@ -186,7 +189,7 @@ export default function Manager() {
             <ListItem disablePadding onClick={() => setMenuData("ReadStaff")}>
               <ListItemButton>
                 <ListItemIcon>
-                  <MdDomain />
+                <RxAvatar />
                 </ListItemIcon>
                 <ListItemText primary="Nhân viên" />
               </ListItemButton>
@@ -195,9 +198,9 @@ export default function Manager() {
             <ListItem disablePadding>
               <ListItemButton onClick={handleGOBack}>
                 <ListItemIcon>
-                  <MdCreateNewFolder />
+                <RiArrowGoBackFill />
                 </ListItemIcon>
-                <ListItemText primary="Đăng xuất" />
+                <ListItemText primary="Quay lại" />
               </ListItemButton>
             </ListItem>
           </List>

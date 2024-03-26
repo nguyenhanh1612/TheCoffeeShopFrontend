@@ -74,14 +74,14 @@ function UpdateDrink() {
         setIsUpdated(true);
         setTimeout(() => {
           setIsUpdated(false);
-          navigate("/readdrink");
+          navigate("/manager");
         }, 1000);
       } else {
         console.log("Cat product data has not changed");
         setIsUpdated(true);
         setTimeout(() => {
           setIsUpdated(false);
-          navigate("/readdrink");
+          navigate("/manager");
         }, 1000);
       }
     } catch (error) {
@@ -112,9 +112,9 @@ function UpdateDrink() {
 
             <FormField>
               <label>Giá</label>
-              <textarea
+              <input
                 placeholder="Giá"
-                name="UnitPrice"
+                name="unitPrice"
                 value={drinkData.unitPrice}
                 onChange={handleInputChange}
               />

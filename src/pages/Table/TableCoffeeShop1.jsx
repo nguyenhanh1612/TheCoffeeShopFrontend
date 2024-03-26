@@ -45,7 +45,7 @@ const App = () => {
   const fetchTables = async () => {
     try {
       const response = await axios.get(
-        `https://thecoffeeshopstore.azurewebsites.net/api/Tables`
+        `https://65e74f0253d564627a8e7c9f.mockapi.io/table`
       );
       const filteredTables = response.data.filter(
         (table) => table.coffeeID === coffeeShopId
@@ -110,7 +110,7 @@ const App = () => {
     });
     console.log(updateTables);
     await axios
-      .put(`https://thecoffeeshopstore.azurewebsites.net/api/Tables/${tableID}`, {
+      .put(`https://65e74f0253d564627a8e7c9f.mockapi.io/table/${tableID}`, {
         status: "Yêu cầu đặt",
       })
       .then((response) => console.log(response.status));
@@ -131,7 +131,7 @@ const App = () => {
   const handleUpdateStatus = async () => {
     try {
       await axios.put(
-        `https://thecoffeeshopstore.azurewebsites.net/api/Tables/${selectedTable.tableID}`,
+        `https://65e74f0253d564627a8e7c9f.mockapi.io/table/${selectedTable.tableID}`,
         {
           status: selectedStatus,
         }

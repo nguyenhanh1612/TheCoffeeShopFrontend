@@ -81,14 +81,14 @@ function UpdateCatProduct() {
         setIsUpdated(true);
         setTimeout(() => {
           setIsUpdated(false);
-          navigate("/readcatproduct");
+          navigate("/manager");
         }, 1000);
       } else {
         console.log("Cat product data has not changed");
         setIsUpdated(true);
         setTimeout(() => {
           setIsUpdated(false);
-          navigate("/readcatproduct");
+          navigate("/manager");
         }, 1000);
       }
     } catch (error) {
@@ -127,7 +127,7 @@ function UpdateCatProduct() {
             </FormField>
             <FormField>
               <label>Giá</label>
-              <textarea
+              <input
                 placeholder="Giá"
                 name="price"
                 value={catProductData.price}

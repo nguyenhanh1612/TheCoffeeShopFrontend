@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { FormField, Button, Form } from "semantic-ui-react";
+import { FormField, Button, Form, Checkbox } from "semantic-ui-react";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-
 function UpdateStaff() {
   const { staffID } = useParams();
-  const navigate = useNavigate();
   const [isUpdated, setIsUpdated] = useState(false);
+  const navigate = useNavigate();
   const [staffData, setStaffData] = useState({
     fullName: "",
-    phoneNumber: "",
+    phoneNumer: "",
     address: "",
     dob: "",
     coffeeID: "",
@@ -34,7 +34,7 @@ function UpdateStaff() {
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching staff data:", error);
-        setIsLoading(false);
+        setIsLoading(false); 
       }
     };
 
@@ -50,10 +50,10 @@ function UpdateStaff() {
     }
   };
 
+ 
   const handleGOBack = () => {
     navigate("/manager");
   };
-
   const coffeeShopIds = [
     "9c305019-b38f-431a-835f-7b29d4351bc7",
     "ea50c8f8-ac2b-425d-8cda-b67bfb65cbcc",
@@ -79,30 +79,17 @@ function UpdateStaff() {
         coffeeID: staffData.coffeeID,
       };
 
-      if (JSON.stringify(originalStaffData) !== JSON.stringify(staffData)) {
         await axios.put(
           `https://thecoffeeshopstore.azurewebsites.net/api/Staffs/${staffID}`,
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
+          formData
         );
         console.log("Updated staff data sent successfully");
         setIsUpdated(true);
         setTimeout(() => {
           setIsUpdated(false);
-          navigate("/readstaff");
+          navigate("/manager");
         }, 1000);
-      } else {
-        console.log("Staff data has not changed");
-        setIsUpdated(true);
-        setTimeout(() => {
-          setIsUpdated(false);
-          navigate("/readstaff");
-        }, 1000);
-      }
+      
     } catch (error) {
       console.error("Error updating staff data:", error);
     }
@@ -110,111 +97,98 @@ function UpdateStaff() {
 
   return (
     <>
-      <div className="background">
-        <div className="manager">
-          <h1>Chỉnh Sửa Thông Tin Nhân Viên</h1>
-          <p>
-            Điền thông tin chi tiết để chỉnh sửa thông tin nhân viên trên hệ
-            thống.
-          </p>
-          {isLoading ? (
-            <p>Loading...</p>
-          ) : (
-            <>
-              {Object.keys(originalStaffData).length === 0 && (
-                <p>Không tìm thấy nhân viên.</p>
-              )}
-              <Form onSubmit={handleSubmit}>
-                <FormField>
-                  <label>Tên</label>
-                  <input
-                    placeholder="Tên"
-                    name="fullName"
-                    value={staffData.fullName}
-                    onChange={handleInputChange}
-                  />
-                </FormField>
-
-                <FormField>
-                  <label>Số điện thoại</label>
-                  <input
-                    placeholder="Số điện thoại"
-                    name="phoneNumber"
-                    value={staffData.phoneNumber}
-                    onChange={handleInputChange}
-                  />
-                </FormField>
-
-                <FormField>
-                  <label>Địa chỉ</label>
-                  <input
-                    placeholder="address"
-                    name="address"
-                    value={staffData.address}
-                    onChange={handleInputChange}
-                  />
-                </FormField>
-
-                <FormField>
-                  <label>Ngày sinh</label>
-                  <input
-                    placeholder="dob"
-                    name="dob"
-                    value={staffData.dob}
-                    onChange={handleInputChange}
-                  />
-                </FormField>
-                <FormField>
-                  <InputLabel id="demo-simple-select-label">
-                    <b>Chi nhánh</b>
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={staffData.coffeeID}
-                    onChange={(event) => handleCoffeeIDChange(event)}
-                    label="Age"
-                    style={{ width: "310px", backgroundColor: "#fff" }}
-                  >
-                    {coffeeShopIds.map((id) => (
-                      <MenuItem key={id} value={id}>
-                        Chi nhánh {coffeeShopIds.indexOf(id) + 1}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormField>
-                {isUpdated && (
-                  <p
-                    style={{
-                      color: "green",
-                      fontSize: "20px",
-                      display: "flex",
-                      justifyContent: "center",
-                      fontWeight: "30px",
-                    }}
-                  >
-                    {JSON.stringify(originalStaffData) ===
-                    JSON.stringify(staffData)
-                      ? "Không có sự thay đổi"
-                      : "Sửa đổi đã được lưu thành công!"}
-                  </p>
-                )}
-                <Button
-                  type="submit"
-                  style={{
-                    backgroundColor: "green",
-                    color: "#fff",
-                    marginRight: "20px",
-                  }}
-                >
-                  Cập nhật
-                </Button>
-                <Button onClick={handleGOBack}>Quay lại</Button>
-              </Form>
-            </>
+    <div className="background">
+    <div className="manager">
+    <h1>Chỉnh Sửa Thông Tin Nhân Viên</h1>
+          <p>Điền thông tin chi tiết để chỉnh sửa thông tin nhân viên trên hệ thống.</p>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+         {Object.keys(originalStaffData).length === 0 && ( 
+            <p>Không tìm thấy nhân viên.</p>
           )}
-        </div>
-      </div>
+          <Form onSubmit={handleSubmit}>
+            <FormField>
+              <label>Tên</label>
+              <input
+                placeholder="Tên"
+                name="fullName"
+                value={staffData.fullName}
+                onChange={handleInputChange}
+              />
+            </FormField>
+
+            <FormField>
+              <label>Số điện thoại</label>
+              <input
+                placeholder="Số điện thoại"
+                name="phoneNumber"
+                value={staffData.phoneNumber}
+                onChange={handleInputChange}
+              />
+            </FormField>
+
+            <FormField>
+              <label>Địa chỉ</label>
+              <input
+                placeholder="address"
+                name="address"
+                value={staffData.address}
+                onChange={handleInputChange}
+              />
+            </FormField>
+
+            <FormField>
+              <label>Ngày sinh</label>
+              <input
+                placeholder="dob"
+                name="dob"
+                value={staffData.dob}
+                onChange={handleInputChange}
+              />
+            </FormField>
+            <FormField>
+            <InputLabel id="demo-simple-select-label">
+                <b>Chi nhánh</b>
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={staffData.coffeeID}
+                onChange={(event) => handleCoffeeIDChange(event)}
+                label="Age"
+                style={{ width: "310px", backgroundColor: "#fff" }}
+              >
+                {coffeeShopIds.map((id) => (
+                  <MenuItem key={id} value={id}>
+                    Chi nhánh {coffeeShopIds.indexOf(id) + 1}
+                  </MenuItem>
+                ))}
+              </Select>
+              </FormField>
+            {isUpdated && (
+              <p
+                style={{
+                  color: "green",
+                  fontSize: "20px",
+                  display: "flex",
+                  justifyContent: "center",
+                  fontWeight: "30px",
+                }}
+              >
+                {JSON.stringify(originalStaffData) === JSON.stringify(staffData)
+                  ? "Không có sự thay đổi"
+                  : "Sửa đổi đã được lưu thành công!"}
+              </p>
+            )}
+            <Button type="submit" style={{ backgroundColor: 'green', color: '#fff', marginRight: '20px' }}>Cập nhật</Button>
+            <Button onClick={handleGOBack}>Quay lại</Button>
+          </Form>
+        </>
+      )}
+    </div>
+    </div>
     </>
   );
 }
