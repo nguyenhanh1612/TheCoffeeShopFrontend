@@ -24,11 +24,9 @@ function CreateCat() {
   const handleChange = (event) => {
     setAge(event.target.value);
   };
-
   const handleIDChange = (event) => {
     setCoffeeID(event.target.value);
   };
-
   const handleNameChange = (event) => {
     setCatName(event.target.value);
   };
@@ -39,15 +37,12 @@ function CreateCat() {
     const selectedImage = event.target.files[0];
     setImage(selectedImage);
   };
-
   const handleStatusChange = () => {
     setStatus(!status);
   };
-
   const handleGOBack = () => {
     navigate("/manager");
   };
-
   const coffeeShopIds = [
     "9c305019-b38f-431a-835f-7b29d4351bc7",
     "ea50c8f8-ac2b-425d-8cda-b67bfb65cbcc",
@@ -55,16 +50,13 @@ function CreateCat() {
     "e54cb065-8ef4-4041-8822-e2ecf294c281",
     "4ff4a000-9b2a-4409-92c5-f9cf01947609",
   ];
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     try {
       if (!catName || !age || !description || !type || !image || !coffeeID) {
         console.error("Vui lòng điền đầy đủ thông tin mèo.");
         return;
       }
-
       const formData = new FormData();
       formData.append("catName", catName);
       formData.append("age", age);
@@ -73,7 +65,6 @@ function CreateCat() {
       formData.append("status", status);
       formData.append("image", image);
       formData.append("coffeeID", coffeeID);
-
       await axios.post(
         "https://thecoffeeshopstore.azurewebsites.net/api/Cats",
         formData,
@@ -87,22 +78,20 @@ function CreateCat() {
       setIsCreated(true);
       setTimeout(() => {
         setIsCreated(false);
-        navigate("/manager");
+        navigate("/readcat");
       }, 1000);
     } catch (error) {
       console.error("Error sending data:", error);
     }
   };
-
   return (
     <>
       <div className="background">
-        
         <div className="manager">
           <h1>Thêm Mèo Mới</h1>
           <p>Điền thông tin chi tiết để thêm một mèo mới vào hệ thống.</p>
           <Form onSubmit={handleSubmit}>
-            <FormField style={{ marginBottom: '20px' }}>
+            <FormField style={{ marginBottom: "20px" }}>
               <label>Tên</label>
               <input
                 placeholder="Tên"
@@ -110,18 +99,20 @@ function CreateCat() {
                 onChange={handleNameChange}
               />
             </FormField>
-
             <InputLabel id="demo-simple-select-label">
               <b>Tuổi</b>
             </InputLabel>
-
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={age}
               label="Age"
               onChange={handleChange}
-              style={{ width: "310px",  marginBottom: '20px', backgroundColor: '#fff' }}
+              style={{
+                width: "310px",
+                marginBottom: "20px",
+                backgroundColor: "#fff",
+              }}
             >
               <MenuItem value={1}>1</MenuItem>
               <MenuItem value={2}>2</MenuItem>
@@ -129,28 +120,27 @@ function CreateCat() {
               <MenuItem value={4}>4</MenuItem>
               <MenuItem value={5}>5</MenuItem>
             </Select>
-
-            <FormField style={{ marginBottom: '20px' }}>
-              <label style={{ color: '#333', marginBottom: '5px', fontSize: '15px' }}>Mô tả</label>
+            <FormField style={{ marginBottom: "20px" }}>
+              <label
+                style={{ color: "#333", marginBottom: "5px", fontSize: "15px" }}
+              >
+                Mô tả
+              </label>
               <input
                 placeholder="Mô tả"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                
               />
             </FormField>
-
-            <FormField style={{ marginBottom: '20px' }}>
+            <FormField style={{ marginBottom: "20px" }}>
               <label>Thể loại</label>
               <input
                 placeholder="Thể loại"
                 value={type}
                 onChange={handleTypeChange}
-                
               />
             </FormField>
-
-            <FormField style={{ marginBottom: '20px' }}>
+            <FormField style={{ marginBottom: "20px" }}>
               <label>Ảnh</label>
               <input
                 accept="image/*"
@@ -159,8 +149,7 @@ function CreateCat() {
                 onChange={handleImageChange}
               />
             </FormField>
-
-            <InputLabel id="demo-simple-select-label" >
+            <InputLabel id="demo-simple-select-label">
               <b>Chi nhánh</b>
             </InputLabel>
             <Select
@@ -169,7 +158,7 @@ function CreateCat() {
               value={coffeeID}
               label="Age"
               onChange={handleIDChange}
-              style={{ width: "310px", backgroundColor: '#fff'}}
+              style={{ width: "310px", backgroundColor: "#fff" }}
             >
               {coffeeShopIds.map((id) => (
                 <MenuItem key={id} value={id}>
@@ -177,7 +166,7 @@ function CreateCat() {
                 </MenuItem>
               ))}
             </Select>
-            <FormGroup aria-label="position" row >
+            <FormGroup aria-label="position" row>
               <FormControlLabel
                 control={
                   <Switch
@@ -188,7 +177,7 @@ function CreateCat() {
                 }
                 label="Trạng thái"
                 labelPlacement="start"
-                style={{ marginLeft: "0px", marginBottom: '20px'}}
+                style={{ marginLeft: "0px", marginBottom: "20px" }}
               />
             </FormGroup>
             <FormField>
@@ -197,7 +186,16 @@ function CreateCat() {
             {isCreated && (
               <p style={{ color: "green" }}>Thêm mèo thành công!</p>
             )}
-            <Button type="submit" style={{ backgroundColor: 'green', color: '#fff', marginRight: '20px' }}>Thêm</Button>
+            <Button
+              type="submit"
+              style={{
+                backgroundColor: "green",
+                color: "#fff",
+                marginRight: "20px",
+              }}
+            >
+              Thêm
+            </Button>
             <Button onClick={handleGOBack}>Quay lại</Button>
           </Form>
         </div>
@@ -205,5 +203,4 @@ function CreateCat() {
     </>
   );
 }
-
 export default CreateCat;

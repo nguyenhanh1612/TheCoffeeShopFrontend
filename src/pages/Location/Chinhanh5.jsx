@@ -37,30 +37,39 @@ function Location2() {
                 toàn phù hợp cho xe lăn và có đầy đủ tiện nghi thay đồ ngay
                 trong khuôn viên.Vì vậy, nếu bạn đang tìm kiếm thời gian dành
                 cho gia đình, thư giãn tối đa hay chỉ là một trải nghiệm độc đáo
-                và thú vị thì Kitty Café là nơi dành cho bạn!
+                và thú vị thì Donna Coffee là nơi dành cho bạn!
               </p>
               <p style={{ fontSize: "25px" }}>{coffeeShop.description}</p>
               <br />
               <p style={{ fontSize: "25px" }}> Số giấy phép - 136453</p>
             </div>
-            <div className="text-location-right" style={{marginBottom: "25px" }}>
+            <div
+              className="text-location-right"
+              style={{ marginBottom: "25px" }}
+            >
               <div className="column">
-                <h4 style={{fontSize: "25px" }}>Giờ mở cửa</h4>
-                <p style={{ marginTop: "-15px", fontSize: "20px" }}>Thứ 2-Chủ nhật: 8:00 AM</p>
+                <h4 style={{ fontSize: "25px" }}>Giờ mở cửa</h4>
+                <p style={{ marginTop: "-15px", fontSize: "20px" }}>
+                  Thứ 2-Chủ nhật: 8:00 AM
+                </p>
               </div>
               <div className="column" style={{ marginTop: "20px" }}>
-                <h4 style={{fontSize: "25px" }}>Giờ đóng cửa</h4>
-                <p style={{ marginTop: "-15px", fontSize: "20px" }}>Thứ 2-Chủ nhật: 20:00 PM</p>
+                <h4 style={{ fontSize: "25px" }}>Giờ đóng cửa</h4>
+                <p style={{ marginTop: "-15px", fontSize: "20px" }}>
+                  Thứ 2-Chủ nhật: 20:00 PM
+                </p>
               </div>
               <div className="column" style={{ marginTop: "20px" }}>
                 <h4 style={{ fontSize: "25px" }}>Địa chỉ</h4>
                 <p style={{ marginTop: "-15px", fontSize: "20px" }}>
-                48 Đường Phan Liêm, Đa Kao, Quận 2, Thành phố Hồ Chí Minh
+                  48 Đường Phan Liêm, Đa Kao, Quận 2, Thành phố Hồ Chí Minh
                 </p>
               </div>
               <div className="column" style={{ marginTop: "20px" }}>
-                <h4 style={{fontSize: "25px" }}>Liên hệ</h4>
-                <p style={{ marginTop: "-15px", fontSize: "20px" }}>Phone: {coffeeShop.phoneNumber}</p>
+                <h4 style={{ fontSize: "25px" }}>Liên hệ</h4>
+                <p style={{ marginTop: "-15px", fontSize: "20px" }}>
+                  Phone: {coffeeShop.phoneNumber}
+                </p>
               </div>
               <div style={{ display: "inline-block", marginTop: "10px" }}>
                 <Button
@@ -95,37 +104,10 @@ function Location2() {
               </div>
             </div>
           </div>
-          <div className="column">
-            <div className="img-location">
-              {coffeeShop.image && (
-                <img src={coffeeShop.image} alt="Coffee Shop Image" />
-              )}
-              {coffeeShop.image && (
-                <img src={coffeeShop.image} alt="Coffee Shop Image" />
-              )}
-              {coffeeShop.image && (
-                <img src={coffeeShop.image} alt="Coffee Shop Image" />
-              )}
-              {coffeeShop.image && (
-                <img src={coffeeShop.image} alt="Coffee Shop Image" />
-              )}
-            </div>
-          </div>
-          <div className="column">
-            <div className="img-location">
-              {coffeeShop.image && (
-                <img src={coffeeShop.image} alt="Coffee Shop Image" />
-              )}
-              {coffeeShop.image && (
-                <img src={coffeeShop.image} alt="Coffee Shop Image" />
-              )}
-              {coffeeShop.image && (
-                <img src={coffeeShop.image} alt="Coffee Shop Image" />
-              )}
-              {coffeeShop.image && (
-                <img src={coffeeShop.image} alt="Coffee Shop Image" />
-              )}
-            </div>
+          <div className="img-location" style={{ width: 1000 }}>
+            {coffeeShop.image && (
+              <img src={coffeeShop.image} alt="Coffee Shop Image" />
+            )}
           </div>
         </div>
       )}
