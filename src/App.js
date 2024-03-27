@@ -90,12 +90,10 @@ function App() {
             <Route path="/catproducts" element={<CatProducts />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/manager" element={<Manager />} />
-
             <Route path="/createcat" element={<CreateCat />} />
             <Route path="/readcat" element={<ReadCat />} />
             <Route path="/updatecat" element={<UpdateCat />} />
             <Route path="/updatecat/:catID" element={<UpdateCat />} />
-
             <Route path="/createcatproduct" element={<CreateCatProduct />} />
             <Route path="/readcatproduct" element={<ReadCatProduct />} />
             <Route path="/updatecatproduct" element={<UpdateCatProduct />} />
@@ -103,17 +101,14 @@ function App() {
               path="/updatecatproduct/:catProductID"
               element={<UpdateCatProduct />}
             />
-
             <Route path="/createdrink" element={<CreateDrink />} />
             <Route path="/readdrink" element={<ReadDrink />} />
             <Route path="/updatedrink" element={<UpdateDrink />} />
             <Route path="/updatedrink/:drinkID" element={<UpdateDrink />} />
-
             <Route path="/createstaff" element={<CreateStaff />} />
             <Route path="/readstaff" element={<ReadStaff />} />
             <Route path="/updatestaff" element={<UpdateStaff />} />
             <Route path="/updatestaff/:staffID" element={<UpdateStaff />} />
-
             <Route path="/createcoffeeshop" element={<CreateCoffeeShop />} />
             <Route path="/updatemanager" element={<UpdateManager />} />
             <Route
@@ -128,7 +123,7 @@ function App() {
             <Route path="/tablecoffeeshop5" element={<TableCoffeeShop5 />} />
             <Route path="/confirmstaff" element={<ConfirmStaff />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/staff" element={<Staff />} />
+            <Route path="/staff" element={<Staff />} />\{" "}
           </Routes>
         </BrowserRouter>
         <ToastContainer />

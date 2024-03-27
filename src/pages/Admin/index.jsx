@@ -59,7 +59,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   alignItems: "center",
   justifyContent: "flex-end",
   padding: theme.spacing(0, 1),
- 
+
   ...theme.mixins.toolbar,
 }));
 
@@ -126,10 +126,10 @@ export default function Admin() {
   //   setMenuData(menu);
   //   handleMenuClose();
   // };
-  
+
   const navigate = useNavigate();
   const userData = useUserData();
-  const { loaded } = useAuth()
+  const { loaded } = useAuth();
 
   useEffect(() => {
     if (loaded && (!userData || userData.roleName !== "Admin")) {
@@ -172,7 +172,10 @@ export default function Admin() {
           </DrawerHeader>
           <Divider />
           <List>
-            <ListItem disablePadding onClick={() => setMenuData("ReadCoffeeShop")}>
+            <ListItem
+              disablePadding
+              onClick={() => setMenuData("ReadCoffeeShop")}
+            >
               <ListItemButton>
                 <ListItemIcon>
                   <MdDomain />
@@ -180,8 +183,7 @@ export default function Admin() {
                 <ListItemText primary="Trang chủ" />
               </ListItemButton>
             </ListItem>
-            
-            
+
             <ListItem disablePadding>
               <ListItemButton onClick={handleGOBack}>
                 <ListItemIcon>
