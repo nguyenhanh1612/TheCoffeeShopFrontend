@@ -74,7 +74,7 @@ function CreateCatProduct() {
       setIsCreated(true);
       setTimeout(() => {
         setIsCreated(false);
-        navigate("/readcatproduct");
+        navigate("/manager");
       }, 1000);
     } catch (error) {
       console.error("Error sending data:", error);

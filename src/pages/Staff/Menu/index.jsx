@@ -25,6 +25,7 @@ import {
   tang,
 } from "../../../contexts/reducer/cartReducer";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const MenuStaff = () => {
   const [listMenu, setListMenu] = useState([]);
@@ -38,25 +39,66 @@ const MenuStaff = () => {
     dispatch,
   } = CartState();
 
-  const CreateOrder = useCallback(async () => {
-    
-    if (cart?.length > 0) {
-      const body = cart.map((item) => {
-        const { image, price, name, ...re } = item;
-        return re;
-      });
-      const { status, data } = await axiosInstance.post("/Orders", body);
-      if (+status === 200) {
-        window.scrollTo({
-          top: 0,
-          left: 0,
-          behavior: "smooth",
+  const CreateOrder = async () => {
+    try {
+      if (cart?.length > 0) {
+        const body = cart.map((item) => {
+          const { image, price, name, ...re } = item;
+          return re;
         });
-        toast(data, { type: "success" });
-        dispatch({ type: REMOVE_FROM_CART });
-      } else toast("Có biến", { type: "error" });
+
+        // const { status, data } = await axiosInstance.post("/Orders", body);
+        // if (+status === 200) {
+        //   window.scrollTo({
+        //     top: 0,
+        //     left: 0,
+        //     behavior: "smooth",
+        //   });
+        //   toast(data, { type: "success" });
+        //   dispatch({ type: REMOVE_FROM_CART });
+        // } else toast("Có biến", { type: "error" });
+
+        let totalPrice = cart?.reduce((a, b) => {
+          return a + b?.amount;
+        }, 0)
+        let totalItem = cart?.reduce((a, b) => {
+          return a + b?.quantity;
+        }, 0)
+
+        //vn pay api
+        let searchObject = {
+          "orderType": "VN PAY",
+          "createTime": new Date(),
+          "amount": totalPrice,
+          "totalPrice": totalPrice,
+          "totalItem": totalItem,
+          "totalDiscount": 0,
+          "status": true,
+          "customerID": "5DA30602-172C-474F-B528-1066B05B4CB0",
+          "userID": "5DA30602-172C-474F-B528-1066B05B4CB0",
+          "tableID": "0B7D91ED-E07B-4DC1-9A3E-27EA64DDABD2",
+          "cpid": "6d1a2cfa-e9ae-42c8-80ac-1723ed6d1782",
+          "staffID": "3d81e9ba-7b25-4e62-822f-5dd87825a5fe",
+          "orderDetails": cart?.map(i => {
+            return {
+              "quantity": i?.quantity,
+              "amount": i?.amount,
+              "menuID": "f6382251-e79f-4d87-b766-0091d847e79b",
+              "orderID": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+              "subscriptionID": "cf235d7b-ac9e-4ebe-81f8-13694e2d485b"
+            }
+          })
+        }
+
+        const dataPay = await axios.post("https://thecoffeeshopstore.azurewebsites.net/api/VNPay", searchObject);
+        if (dataPay?.status === 200) {
+          window.location.href = dataPay?.data
+        }
+      }
+    } catch (error) {
+      console.log(error)
     }
-  }, []);
+  };
   const handleChangeItem = useCallback((event, menuID) => {
     dispatch({
       type: CHANGE_CART_QUANTITY,
@@ -201,10 +243,10 @@ const MenuStaff = () => {
                   currency: "VND",
                 }).format(
                   cart &&
-                    cart.length > 0 &&
-                    cart.reduce((a, b) => {
-                      return a + b.amount;
-                    }, 0)
+                  cart.length > 0 &&
+                  cart.reduce((a, b) => {
+                    return a + b.amount;
+                  }, 0)
                 )}
               </Typography>
             </Box>
@@ -232,10 +274,10 @@ const MenuStaff = () => {
                   currency: "VND",
                 }).format(
                   cart &&
-                    cart.length > 0 &&
-                    cart.reduce((a, b) => {
-                      return a + b.amount;
-                    }, 0)
+                  cart.length > 0 &&
+                  cart.reduce((a, b) => {
+                    return a + b.amount;
+                  }, 0)
                 )}
               </Typography>
             </Box>

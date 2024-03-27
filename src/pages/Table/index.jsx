@@ -54,13 +54,23 @@ const App = () => {
   };
 
   const handleTableClick = (table) => {
-    if (userData.roleName === "Staff" || userData.roleName === "Manager") {
+    if (userData.roleName === "Staff") {
       setSelectedTable(table);
       setChangeStatusDialogOpen(true);
+    } else if (userData.roleName === "Manager") {
+      // Không cho phép cập nhật bàn cho Admin và Manager
+      setSnackbarSeverity("error");
+      setSnackbarMessage("Bạn không có quyền cập nhật trạng thái của bàn.");
+      setSnackbarOpen(true);
     } else {
       if (table.status === "Trống") {
         setSelectedTable(table);
         setConfirmDialogOpen(true);
+      } else {
+        // Chỉ cho phép đặt bàn khi trạng thái là "Trống" cho các vai trò khác
+        setSnackbarSeverity("error");
+        setSnackbarMessage("Bạn chỉ có thể đặt bàn khi trạng thái là 'Trống'.");
+        setSnackbarOpen(true);
       }
     }
   };

@@ -64,7 +64,6 @@ function ListAllMenu() {
         />
       </div>
       <div className="menus">
-        {/* Hiển thị danh sách thức uống */}
         {drinks
           .filter((drink) =>
             drink.drinkName.toLowerCase().includes(searchTerm.toLowerCase())
@@ -91,7 +90,7 @@ function ListAllMenu() {
               </Card>
             </div>
           ))}
-        {/* Hiển thị danh sách sản phẩm */}
+
         {products
           .filter((product) =>
             product.catProductName

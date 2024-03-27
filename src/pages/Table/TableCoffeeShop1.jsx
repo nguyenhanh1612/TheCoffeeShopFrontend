@@ -57,20 +57,27 @@ const App = () => {
   };
 
   const handleTableClick = (table) => {
-    if (
-      userData.roleName === "Staff" ||
-      userData.roleName === "Admin" ||
-      userData.roleName === "Manager"
-    ) {
+    if (userData && userData.roleName === "Staff") {
       setSelectedTable(table);
       setChangeStatusDialogOpen(true);
+    } else if (userData && (userData.roleName === "Admin" || userData.roleName === "Manager")) {
+      // Không cho phép cập nhật bàn cho Admin và Manager
+      setSnackbarSeverity("error");
+      setSnackbarMessage("Bạn không có quyền cập nhật trạng thái của bàn.");
+      setSnackbarOpen(true);
     } else {
       if (table.status === "Trống") {
         setSelectedTable(table);
         setConfirmDialogOpen(true);
+      } else {
+        // Chỉ cho phép đặt bàn khi trạng thái là "Trống" cho các vai trò khác
+        setSnackbarSeverity("error");
+        setSnackbarMessage("Bạn chỉ có thể đặt bàn khi trạng thái là 'Trống'.");
+        setSnackbarOpen(true);
       }
     }
   };
+  
 
   const handleConfirmDialogClose = async (confirmed) => {
     console.log("Confirm dialog closed with confirmed value:", confirmed);
@@ -152,7 +159,10 @@ const App = () => {
   const handleGOBack = () => {
     navigate("/booking");
   };
-
+  useEffect(() => {
+    console.log("userData:", userData);
+    fetchTables();
+  }, []);
   return (
     <div className="table-booking">
       <Header />
@@ -181,12 +191,13 @@ const App = () => {
                     cursor:
                       userData.roleName === "Staff" ||
                       userData.roleName === "Manager" ||
+                      userData.roleName === "Admin" ||
                       table.status === "Trống"
                         ? "pointer"
                         : "not-allowed",
                     opacity:
                       userData.roleName === "Staff" ||
-                      userData.roleName === "Manager"
+                      userData.roleName === "Manager" || userData.roleName === "Admin" 
                         ? 1
                         : table.status === "Trống"
                         ? 1
@@ -195,7 +206,9 @@ const App = () => {
                   onClick={() => {
                     if (
                       userData.roleName === "Staff" ||
-                      userData.roleName === "Manager" ||
+                      userData.roleName === "Admin" ||
+                      userData.roleName === "Manager" || 
+                      
                       table.status === "Trống"
                     ) {
                       handleTableClick(table);

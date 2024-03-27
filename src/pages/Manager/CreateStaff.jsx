@@ -3,11 +3,15 @@ import { FormField, Button, Checkbox, Form } from "semantic-ui-react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Switch from "@mui/material/Switch";
-import axios from "axios";
 import "./style.css";
+import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"; // Import đúng cách
+
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+
+import { TextField } from "@mui/material";
+import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
@@ -16,30 +20,61 @@ function CreateStaff() {
   const [fullName, setFullName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
-  const [dob, setDob] = useState("");
-
   const [coffeeID, setCoffeeID] = useState("");
   const [email, setEmail] = useState("");
-
+  const [password, setPassword] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const [isCreated, setIsCreated] = useState(false);
-  const handleChange = (event) => {
-    setPhoneNumber(event.target.value);
-    setAddress(event.target.value);
-    setDob(event.target.value);
-    setEmail(event.target.value);
-  };
+
+  const [dob, setDob] = useState("");
 
   const handleIDChange = (event) => {
     setCoffeeID(event.target.value);
   };
+  const handleEmailChange = (event) => {
+    const emailInput = event.target.value;
+    setEmail(emailInput);
 
-  const handleNameChange = (event) => {
+    const emailRegex = /^[^\s@]+@gmail\.com$/;
+    const isValidEmail = emailRegex.test(emailInput);
+
+    if (!isValidEmail) {
+      console.log("Email không hợp lệ");
+    }
+  };
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+  const handleConfirmPassChange = (event) => {
+    const confirmPass = event.target.value;
+    setConfirmPass(confirmPass);
+
+    if (confirmPass !== password) {
+      setError("Mật khẩu không khớp");
+    } else {
+      setError("");
+    }
+  };
+
+  const handleDobChange = (event) => {
+    setDob(event.target.value);
+  };
+
+  const handleFullNameChange = (event) => {
     setFullName(event.target.value);
+  };
+  const handlePhoneChange = (event) => {
+    setPhoneNumber(event.target.value);
+  };
+
+  const handleAddressChange = (event) => {
+    setAddress(event.target.value);
   };
 
   const handleGOBack = () => {
-    navigate("/manager");
+    navigate("/admin");
   };
 
   const coffeeShopIds = [
@@ -54,33 +89,28 @@ function CreateStaff() {
     event.preventDefault();
 
     try {
-      if (
-        !fullName ||
-        !phoneNumber ||
-        !address ||
-        !dob ||
-        !email ||
-        !coffeeID
-      ) {
+      if (!fullName || !phoneNumber || !address || !dob || !coffeeID) {
         console.error("Vui lòng điền đầy đủ thông tin nhân viên.");
         return;
       }
 
-      const formData = new FormData();
-      formData.append("fullName", fullName);
-      formData.append("phoneNumber", phoneNumber);
-      formData.append("address", address);
-      formData.append("dob", dob);
-      formData.append("email", email);
-
-      formData.append("coffeeID", coffeeID);
+      const requestData = {
+        fullName: fullName,
+        phoneNumber: phoneNumber,
+        address: address,
+        dob: dob,
+        coffeeID: coffeeID,
+        email: email,
+        password: password,
+        confirmPass: confirmPass,
+      };
 
       await axios.post(
         "https://thecoffeeshopstore.azurewebsites.net/api/Staffs",
-        formData,
+        requestData,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "application/json",
           },
         }
       );
@@ -88,7 +118,7 @@ function CreateStaff() {
       setIsCreated(true);
       setTimeout(() => {
         setIsCreated(false);
-        navigate("/readstaff");
+        navigate("/manager");
       }, 1000);
     } catch (error) {
       console.error("Error sending data:", error);
@@ -99,15 +129,15 @@ function CreateStaff() {
     <>
       <div className="background">
         <div className="manager">
-          <h1>Thêm nhân viên</h1>
+          <h1>Thêm Nhân Viên Mới</h1>
           <p>Điền thông tin chi tiết để thêm một nhân viên mới vào hệ thống.</p>
           <Form onSubmit={handleSubmit}>
             <FormField style={{ marginBottom: "20px" }}>
-              <label>Tên</label>
+              <label>Họ và Tên</label>
               <input
-                placeholder="Tên"
+                placeholder="Họ và Tên"
                 value={fullName}
-                onChange={handleNameChange}
+                onChange={handleFullNameChange}
               />
             </FormField>
 
@@ -120,26 +150,54 @@ function CreateStaff() {
               <input
                 placeholder="Số điện thoại"
                 value={phoneNumber}
-                onChange={handleChange}
+                onChange={(e) => setPhoneNumber(e.target.value)}
               />
             </FormField>
 
             <FormField style={{ marginBottom: "20px" }}>
-              <label
-                style={{ color: "#333", marginBottom: "5px", fontSize: "15px" }}
-              >
-                Địa chỉ
-              </label>
+              <label>Địa chỉ</label>
               <input
                 placeholder="Địa chỉ"
                 value={address}
-                onChange={handleChange}
+                onChange={handleAddressChange}
+              />
+            </FormField>
+            <FormField style={{ marginBottom: "20px" }}>
+              <label>Ngày sinh</label>
+              <input
+                placeholder="Ngày sinh"
+                value={dob}
+                onChange={handleDobChange}
               />
             </FormField>
 
             <FormField style={{ marginBottom: "20px" }}>
-              <label>Ngày sinh</label>
-              <input placeholder="dob" value={dob} onChange={handleChange} />
+              <label>Email</label>
+              <input
+                placeholder="Email"
+                value={email}
+                onChange={handleEmailChange}
+              />
+            </FormField>
+
+            <FormField style={{ marginBottom: "20px" }}>
+              <label>Mật khẩu</label>
+              <input
+                type="password"
+                placeholder="Mật khẩu"
+                value={password}
+                onChange={handlePasswordChange}
+              />
+            </FormField>
+
+            <FormField style={{ marginBottom: "20px" }}>
+              <label>Xác nhận mật khẩu</label>
+              <input
+                type="password"
+                placeholder="Xác nhận mật khẩu"
+                value={confirmPass}
+                onChange={handleConfirmPassChange}
+              />
             </FormField>
 
             <InputLabel id="demo-simple-select-label">
@@ -149,7 +207,7 @@ function CreateStaff() {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={coffeeID}
-              label="coffeeID"
+              label="Age"
               onChange={handleIDChange}
               style={{ width: "310px", backgroundColor: "#fff" }}
             >
@@ -159,14 +217,6 @@ function CreateStaff() {
                 </MenuItem>
               ))}
             </Select>
-            <FormField style={{ marginBottom: "20px" }}>
-              <label>Email</label>
-              <input
-                placeholder="email"
-                value={email}
-                onChange={handleChange}
-              />
-            </FormField>
 
             <FormField>
               <Checkbox label="Tôi đồng ý với các Điều khoản và Điều kiện" />

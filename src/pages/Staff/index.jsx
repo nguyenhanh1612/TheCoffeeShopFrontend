@@ -16,7 +16,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-
+import { FaHome } from "react-icons/fa";
 import Collapse from "@mui/material/Collapse";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
@@ -29,6 +29,7 @@ import TableCoffeeShop2 from "../Table/TableCoffeeShop2";
 import TableCoffeeShop3 from "../Table/TableCoffeeShop3";
 import TableCoffeeShop4 from "../Table/TableCoffeeShop4";
 import TableCoffeeShop5 from "../Table/TableCoffeeShop5";
+import { RiArrowGoBackFill } from "react-icons/ri";
 
 const drawerWidth = 240;
 
@@ -103,6 +104,7 @@ export default function Staff() {
   const [menuData, setMenuData] = useState("Home");
   const [menuOpen, setMenuOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -129,7 +131,7 @@ export default function Staff() {
   const navigate = useNavigate();
   const userData = useUserData();
   const { loaded } = useAuth();
-
+  
   useEffect(() => {
     if (loaded && (!userData || userData.roleName !== "Staff")) {
       navigate("/");
@@ -139,7 +141,7 @@ export default function Staff() {
   const handleGOBack = () => {
     navigate("/");
   };
-
+  
   return (
     <>
       <Box sx={{ display: "flex" }}>
@@ -180,17 +182,18 @@ export default function Staff() {
             >
               <ListItemButton>
                 <ListItemIcon>
-                  <MdCreateNewFolder />
+                <FaHome />
                 </ListItemIcon>
                 <ListItemText primary="Trang chủ" />
               </ListItemButton>
             </ListItem>
+            
             <ListItem disablePadding>
               <ListItemButton onClick={handleGOBack}>
                 <ListItemIcon>
-                  <MdCreateNewFolder />
+                <RiArrowGoBackFill />
                 </ListItemIcon>
-                <ListItemText primary="Đăng xuất" />
+                <ListItemText primary="Quay lại" />
               </ListItemButton>
             </ListItem>
           </List>
@@ -222,15 +225,13 @@ export default function Staff() {
           </MenuItem>
         </Menu>
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          {/* {menuData === "ReadCoffeeShop" && <ReadCoffeeShop />}
-          {menuData === "CreateCoffeeShop" && <CreateCoffeeShop />}
-          {menuData === "Readcat" && <ReadCat />} */}
           {menuData === "MenuStaff" && <MenuStaff />}
           {menuData === "TableCoffeeShop1" && <TableCoffeeShop1 />}
           {menuData === "TableCoffeeShop2" && <TableCoffeeShop2 />}
           {menuData === "TableCoffeeShop3" && <TableCoffeeShop3 />}
           {menuData === "TableCoffeeShop4" && <TableCoffeeShop4 />}
           {menuData === "TableCoffeeShop5" && <TableCoffeeShop5 />}
+         
         </Box>
       </Box>
     </>

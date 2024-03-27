@@ -37,7 +37,7 @@ function Location2() {
                 toàn phù hợp cho xe lăn và có đầy đủ tiện nghi thay đồ ngay
                 trong khuôn viên.Vì vậy, nếu bạn đang tìm kiếm thời gian dành
                 cho gia đình, thư giãn tối đa hay chỉ là một trải nghiệm độc đáo
-                và thú vị thì Kitty Café là nơi dành cho bạn!
+                và thú vị thì Donna Coffee là nơi dành cho bạn!
               </p>
               <p style={{ fontSize: "25px" }}>{coffeeShop.description}</p>
               <br />
@@ -101,12 +101,11 @@ function Location2() {
               </div>
             </div>
           </div>
-          <div className="column">
-            <div className="img-location">
-              {coffeeShop.image && (
-                <img src={coffeeShop.image} alt="Coffee Shop Image" />
-              )}
-            </div>
+
+          <div className="img-location" style={{ width: 1000 }}>
+            {coffeeShop.image && (
+              <img src={coffeeShop.image} alt="Coffee Shop Image" />
+            )}
           </div>
         </div>
       )}
