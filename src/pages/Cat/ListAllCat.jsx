@@ -94,9 +94,7 @@ function ListAllCat() {
                       <Typography gutterBottom variant="h8" component="div">
                         {card.type}
                       </Typography>
-                      <Typography gutterBottom variant="h8" component="div">
-                        Chi nhánh 1
-                      </Typography>
+                     
                       <Typography variant="body2" color="text.secondary">
                         {card.description}
                       </Typography>
@@ -109,7 +107,7 @@ function ListAllCat() {
               return (
                 <div className="card-1" key={index}>
                   <Card sx={{ maxWidth: 500, height: 550 }}>
-                    <Skeleton key={index} width={500} height={500} />;
+                    <Skeleton key={index} width={500} height={500} />;  
                   </Card>
                 </div>
               );

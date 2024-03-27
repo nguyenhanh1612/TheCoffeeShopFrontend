@@ -167,11 +167,11 @@ function Header() {
           )}
         </div>
 
-        <div className="input-wrapper">
+        {/* <div className="input-wrapper">
           <FontAwesomeIcon icon={faSearch} />
           <input type="text" placeholder="Tìm kiếm..." />
         </div>
-        <FontAwesomeIcon icon={faShoppingCart} size="2x" color="white" />
+        <FontAwesomeIcon icon={faShoppingCart} size="2x" color="white" /> */}
       </div>
     </div>
   );
